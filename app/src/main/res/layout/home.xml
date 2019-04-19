@@ -30,7 +30,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Tus puntos: 235"
+            android:text="Estos son tus puntos: 235"
             android:textSize="12dp"/>
 
     </LinearLayout>
