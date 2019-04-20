@@ -42,7 +42,7 @@
         android:layout_marginBottom="20px"
         android:text="Retos"
         android:textSize="20dp"
-        android:textColor="@color/colorPrimary"
+        android:textColor="@color/primaryColor"
         android:textStyle="bold"/>
 
     <ListView

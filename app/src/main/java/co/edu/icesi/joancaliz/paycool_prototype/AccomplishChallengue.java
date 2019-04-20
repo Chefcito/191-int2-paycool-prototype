@@ -12,7 +12,7 @@ public class AccomplishChallengue extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.accomplish_challengue);
+        setContentView(R.layout.activity_accomplish_challengue);
 
         Timer timer = new Timer();
         timer.schedule(new TimerTask() {

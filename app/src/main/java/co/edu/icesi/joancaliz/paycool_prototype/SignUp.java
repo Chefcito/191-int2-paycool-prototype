@@ -3,11 +3,11 @@ package co.edu.icesi.joancaliz.paycool_prototype;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class PurchaseCompleted extends AppCompatActivity {
+public class SignUp extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_purchase_completed);
+        setContentView(R.layout.activity_sign_up);
     }
 }

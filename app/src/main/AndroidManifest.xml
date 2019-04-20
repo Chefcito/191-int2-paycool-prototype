@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".PurchaseCompleted"></activity>
+        <activity android:name=".SignUp"></activity>
+        <activity android:name=".Login" />
+        <activity android:name=".PurchaseCompleted" />
         <activity android:name=".ChallengueBill" />
         <activity android:name=".AccomplishChallengue" />
         <activity android:name=".Home">

@@ -14,7 +14,7 @@ public class Home extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.home);
+        setContentView(R.layout.activity_home);
 
         challenguesListView = findViewById(R.id.home_challengues_list_view);
         challengueAdapter = new ChallengueAdapter(this);

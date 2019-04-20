@@ -13,7 +13,7 @@ public class ChallengueBill extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.challengue_bill);
+        setContentView(R.layout.activity_challengue_bill);
 
         confirmPaymentButton = findViewById(R.id.challengue_bill_confirm_payment_button);
         confirmPaymentButton.setOnClickListener(new View.OnClickListener() {
