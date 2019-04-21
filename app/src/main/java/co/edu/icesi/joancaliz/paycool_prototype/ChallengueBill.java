@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+//Esta clase es usada para almacenar la información de una factura.
 public class ChallengueBill extends AppCompatActivity {
 
     Button confirmPaymentButton;

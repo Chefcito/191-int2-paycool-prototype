@@ -1,5 +1,6 @@
 package co.edu.icesi.joancaliz.paycool_prototype;
 
+//Esta clase es usada para almacenar la información de cada reto.
 public class Challengue {
     private int points;
     private String title, description;
