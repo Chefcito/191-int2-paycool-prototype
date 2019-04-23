@@ -25,7 +25,7 @@ public class AccomplishChallengue extends AppCompatActivity {
     }
 
     public void goToChallengueBill() {
-        Intent intent = new Intent(this, ChallengueBill.class);
+        Intent intent = new Intent(this, Bill.class);
         startActivity(intent);
     }
 }

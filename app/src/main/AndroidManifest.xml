@@ -18,7 +18,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".PurchaseCompleted" />
-        <activity android:name=".ChallengueBill" />
+        <activity android:name=".Bill" />
         <activity android:name=".AccomplishChallengue" />
         <activity android:name=".Home"></activity>
     </application>

@@ -7,14 +7,14 @@ import android.view.View;
 import android.widget.Button;
 
 //Esta clase es usada para almacenar la información de una factura.
-public class ChallengueBill extends AppCompatActivity {
+public class Bill extends AppCompatActivity {
 
     Button confirmPaymentButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_challengue_bill);
+        setContentView(R.layout.activity_bill);
 
         confirmPaymentButton = findViewById(R.id.challengue_bill_confirm_payment_button);
         confirmPaymentButton.setOnClickListener(new View.OnClickListener() {
