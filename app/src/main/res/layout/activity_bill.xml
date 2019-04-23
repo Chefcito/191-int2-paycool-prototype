@@ -96,8 +96,9 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="$6.000"
-                    android:textStyle="bold"/>
+                    android:text="Precio 1"
+                    android:textStyle="bold"
+                    android:id="@+id/bill_product_1_price_text_view"/>
 
             </LinearLayout>
 
@@ -115,8 +116,9 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="$5.000"
-                    android:textStyle="bold"/>
+                    android:text="Price 2"
+                    android:textStyle="bold"
+                    android:id="@+id/bill_product_2_price_text_view"/>
 
             </LinearLayout>
 
@@ -134,7 +136,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="$6.000"
+                    android:text="Price 3"
+                    android:id="@+id/bill_product_3_price_text_view"
                     android:textStyle="bold"/>
 
             </LinearLayout>
@@ -162,8 +165,9 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="$17.000"
-                    android:textStyle="bold"/>
+                    android:text="Val Subtotal"
+                    android:textStyle="bold"
+                    android:id="@+id/bill_subtotal_text_view"/>
 
             </LinearLayout>
 
@@ -181,8 +185,9 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="$-3.400"
-                    android:textStyle="bold"/>
+                    android:text="Val Descuento"
+                    android:textStyle="bold"
+                    android:id="@+id/bill_discount_text_view"/>
 
             </LinearLayout>
 
@@ -210,15 +215,11 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="$13.600"
-                    android:textStyle="bold"/>
+                    android:text="Val Total"
+                    android:textStyle="bold"
+                    android:id="@+id/bill_total_text_view"/>
 
             </LinearLayout>
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:src="@drawable/barcode"/>
 
         </LinearLayout>
 
