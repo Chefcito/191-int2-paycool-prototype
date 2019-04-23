@@ -86,7 +86,6 @@ public class Login extends AppCompatActivity {
                 // Si el inicio de sesión fue exitoso, entonces...
                 if(task.isSuccessful() ) {
 
-
                     /*
                     for (int i = 0; i < 3; i++) {
                         Purchase p = new Purchase( (int) Math.random()*1000, "STI19" + i);
