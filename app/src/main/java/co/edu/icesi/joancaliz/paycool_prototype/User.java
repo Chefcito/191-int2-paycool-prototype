@@ -5,6 +5,7 @@ package co.edu.icesi.joancaliz.paycool_prototype;
 
 public class User {
     private String userID, name, surname, dni, phoneNumber, email, password;
+    private int dinero,puntos;
 
     // Hasta donde recuerdo, las clases que usaran con Firebase requieren un constructor vacío para funcionar correctamente. No se por qué.
     public User() {
@@ -77,5 +78,21 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public int getDinero() {
+        return dinero;
+    }
+
+    public void setDinero(int dinero) {
+        this.dinero = dinero;
+    }
+
+    public int getPuntos() {
+        return puntos;
+    }
+
+    public void setPuntos(int puntos) {
+        this.puntos = puntos;
     }
 }
