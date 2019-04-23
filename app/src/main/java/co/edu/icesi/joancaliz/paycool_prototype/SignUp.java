@@ -149,8 +149,8 @@ public class SignUp extends AppCompatActivity {
                     String password = passwordEditText.getText().toString();
 
                     //se añaden las variables de puntos y de dinero para su control
-                    int puntos =0;
-                    int dinero =0;
+                    int paycoolPoints =0;
+                    int money =0;
 
 
                     //Al crear el usaurio hago un map para cargar los archivos y enviarlos a firebase
@@ -165,15 +165,15 @@ public class SignUp extends AppCompatActivity {
                     updates.put("phoneNumber",phoneNumber);
                     updates.put("email",email);
                     updates.put("password",password);
-                    updates.put("puntos",puntos);
-                    updates.put("dinero",dinero);
-                    mDatabase.child("Users").push().updateChildren(updates);
+                    updates.put("paycoolPoints",paycoolPoints);
+                    updates.put("money",money);
+                   // mDatabase.child("Users").updateChildren(updates);
 
 
 
-                    // Se añade el usuario a la base de datos.
-                   // User user = new User(userID, name, surname, dni, phoneNumber, email, password);
-                    //dbUsersReference.child(userID).setValue(user);
+                  //Se añade el usuario a la base de datos.
+                    User user = new User(userID, name, surname, dni, phoneNumber, email, password,money,paycoolPoints);
+                    mDatabase.child(userID).setValue(updates);
 
                     goToHome();
                 }

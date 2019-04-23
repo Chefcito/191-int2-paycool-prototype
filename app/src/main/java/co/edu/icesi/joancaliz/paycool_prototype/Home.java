@@ -70,11 +70,13 @@ public class Home extends AppCompatActivity {
         dbReference= FirebaseDatabase.getInstance().getReference();
 
 
+
         dbReference.child("Users").child(auth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-             //User myInformation  =  dataSnapshot.getValue(User.class);
-            // money.setText(Integer.toString(myInformation.getDinero()));
+                User myInformation  =  dataSnapshot.getValue(User.class);
+                Log.d("hola",myInformation.toString());
+            money.setText("$"+Integer.toString(myInformation.getMoney()));
 
 
 

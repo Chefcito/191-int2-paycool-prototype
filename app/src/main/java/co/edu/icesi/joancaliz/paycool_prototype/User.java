@@ -5,7 +5,7 @@ package co.edu.icesi.joancaliz.paycool_prototype;
 
 public class User {
     private String userID, name, surname, dni, phoneNumber, email, password;
-    private int dinero,puntos;
+    private int money,paycoolPoints;
 
     // Hasta donde recuerdo, las clases que usaran con Firebase requieren un constructor vacío para funcionar correctamente. No se por qué.
     public User() {
@@ -13,7 +13,7 @@ public class User {
     }
 
     // Este otro constructor es en donde se inicializa la instancia de User.
-    public User(String userID, String name, String surname, String dni, String phoneNumber, String email, String password) {
+    public User(String userID, String name, String surname, String dni, String phoneNumber, String email, String password, int money, int paycoolPoints) {
         this.userID = userID;
         this.name = name;
         this.surname = surname;
@@ -21,6 +21,8 @@ public class User {
         this.phoneNumber = phoneNumber;
         this.email = email;
         this.password = password;
+        this.paycoolPoints=paycoolPoints;
+        this.money=money;
     }
 
     // Getters y Setters
@@ -80,19 +82,19 @@ public class User {
         this.password = password;
     }
 
-    public int getDinero() {
-        return dinero;
+    public int getMoney() {
+        return money;
     }
 
-    public void setDinero(int dinero) {
-        this.dinero = dinero;
+    public void setMoney(int money) {
+        this.money = money;
     }
 
-    public int getPuntos() {
-        return puntos;
+    public int getPaycoolPoints() {
+        return paycoolPoints;
     }
 
-    public void setPuntos(int puntos) {
-        this.puntos = puntos;
+    public void setPaycoolPoints(int paycoolPoints) {
+        this.paycoolPoints = paycoolPoints;
     }
 }
