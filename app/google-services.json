@@ -23,6 +23,14 @@
           }
         },
         {
+          "client_id": "496148187784-615a1ne4o7nm0n9ee2i176pt0ms5nlnr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "co.edu.icesi.joancaliz.paycool_prototype",
+            "certificate_hash": "e64d369a8b55b91439b814352e27ebc3dcad4cec"
+          }
+        },
+        {
           "client_id": "496148187784-krvtk435555sismcsauk7iako4gou9s7.apps.googleusercontent.com",
           "client_type": 3
         }

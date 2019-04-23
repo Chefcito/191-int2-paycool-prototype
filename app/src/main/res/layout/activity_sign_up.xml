@@ -5,212 +5,212 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
+        android:background="@color/gray1"
         android:orientation="vertical"
-        android:padding="80px"
-        android:background="@color/gray1">
+        android:padding="80px">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_marginBottom="20px"
             android:layout_weight="2"
-            android:orientation="vertical"
             android:gravity="center"
-            android:layout_marginBottom="20px">
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="24dp"
-                android:text="Bienvenido a Paycool"/>
+                android:text="Bienvenido a Paycool"
+                android:textSize="24dp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Registrate a continuación"/>
+                android:text="Registrate a continuación" />
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_marginBottom="30px"
             android:layout_weight="6"
-            android:orientation="vertical"
             android:gravity="center"
-            android:layout_marginBottom="30px">
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
+                android:layout_marginBottom="20px"
                 android:gravity="center"
-                android:layout_marginBottom="20px">
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_marginBottom="50px">
+                    android:layout_marginBottom="50px"
+                    android:orientation="vertical">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:gravity="center">
+                        android:gravity="center"
+                        android:orientation="horizontal">
 
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="2"
-                            android:textSize="14dp"
-                            android:text="Nombre"/>
+                            android:text="Nombre"
+                            android:textSize="14dp" />
 
                         <EditText
+                            android:id="@+id/sign_up_name_edit_text"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="4"
-                            android:textSize="12dp"
                             android:hint="¿Como te llamas?"
-                            android:id="@+id/sign_up_name_edit_text"/>
+                            android:textSize="12dp" />
 
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:gravity="center">
+                        android:gravity="center"
+                        android:orientation="horizontal">
 
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="2"
-                            android:textSize="14dp"
-                            android:text="Apellido"/>
+                            android:text="Apellido"
+                            android:textSize="14dp" />
 
                         <EditText
+                            android:id="@+id/sign_up_surname_edit_text"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="4"
-                            android:textSize="12dp"
                             android:hint="Escribe tu apellido"
-                            android:id="@+id/sign_up_surname_edit_text"/>
+                            android:textSize="12dp" />
 
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:gravity="center">
+                        android:gravity="center"
+                        android:orientation="horizontal">
 
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="2"
-                            android:textSize="14dp"
-                            android:text="Cédula"/>
+                            android:text="Cédula"
+                            android:textSize="14dp" />
 
                         <EditText
+                            android:id="@+id/sign_up_dni_edit_text"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="4"
-                            android:textSize="12dp"
                             android:hint="Ingresa el número de tu cédula"
-                            android:id="@+id/sign_up_dni_edit_text"/>
+                            android:textSize="12dp" />
 
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:gravity="center">
+                        android:gravity="center"
+                        android:orientation="horizontal">
 
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="2"
-                            android:textSize="14dp"
-                            android:text="Teléfono"/>
+                            android:text="Teléfono"
+                            android:textSize="14dp" />
 
                         <EditText
+                            android:id="@+id/sign_up_phone_number_edit_text"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="4"
-                            android:textSize="12dp"
                             android:hint="¿Cual es tu número telefónico?"
-                            android:id="@+id/sign_up_phone_number_edit_text"/>
+                            android:textSize="12dp" />
 
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:gravity="center">
+                        android:gravity="center"
+                        android:orientation="horizontal">
 
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="2"
-                            android:textSize="14dp"
-                            android:text="E-Mail"/>
+                            android:text="E-Mail"
+                            android:textSize="14dp" />
 
                         <EditText
+                            android:id="@+id/sign_up_email_edit_text"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="4"
-                            android:textSize="12dp"
                             android:hint="Ingresa tu correo electrónico"
-                            android:id="@+id/sign_up_email_edit_text"/>
+                            android:textSize="12dp" />
 
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:gravity="center">
+                        android:gravity="center"
+                        android:orientation="horizontal">
 
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="2"
-                            android:textSize="14dp"
-                            android:text="Contraseña"/>
+                            android:text="Contraseña"
+                            android:textSize="14dp" />
 
                         <EditText
+                            android:id="@+id/sign_up_password_edit_text"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="4"
-                            android:textSize="12dp"
                             android:hint="Ingresa tu contraseña"
-                            android:id="@+id/sign_up_password_edit_text"/>
+                            android:textSize="12dp" />
 
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:gravity="center">
+                        android:gravity="center"
+                        android:orientation="horizontal">
 
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="2"
-                            android:textSize="14dp"
-                            android:text="Confirmar contraseña"/>
+                            android:text="Confirmar contraseña"
+                            android:textSize="14dp" />
 
                         <EditText
+                            android:id="@+id/sign_up_confirm_password_edit_text"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="4"
-                            android:textSize="12dp"
                             android:hint="Repite tu contraseña"
-                            android:id="@+id/sign_up_confirm_password_edit_text"/>
+                            android:textSize="12dp" />
 
                     </LinearLayout>
 
@@ -219,12 +219,12 @@
             </LinearLayout>
 
             <Button
+                android:id="@+id/sign_up_create_account_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/primaryColor"
-                android:textColor="@color/gray1"
                 android:text="CREAR CUENTA"
-                android:id="@+id/sign_up_create_account_button"/>
+                android:textColor="@color/gray1" />
 
         </LinearLayout>
 
@@ -232,15 +232,15 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:orientation="vertical"
-            android:gravity="center">
+            android:gravity="center"
+            android:orientation="vertical">
 
             <Button
+                android:id="@+id/sign_up_go_to_login_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="10dp"
                 android:text="¡Ya tengo una cuenta!"
-                android:id="@+id/sign_up_go_to_login_button"/>
+                android:textSize="10dp" />
 
         </LinearLayout>
 
