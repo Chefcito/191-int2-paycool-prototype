@@ -16,6 +16,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 
 public class AccomplishChallengue extends AppCompatActivity {
     private FirebaseDatabase database;
@@ -60,12 +61,11 @@ public class AccomplishChallengue extends AppCompatActivity {
                     return;
                 }
 
-                dbPurchasesReference.orderByChild("code").equalTo(code).addChildEventListener(new ChildEventListener() {
+                dbPurchasesReference.orderByChild("code").equalTo(code).limitToFirst(1).addChildEventListener(new ChildEventListener() {
                     @Override
                     public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                         Purchase purchase = dataSnapshot.getValue(Purchase.class);
                         if(dataSnapshot.hasChildren() ) {
-                            //Toast.makeText(activity, "Si existe la factura: " + dataSnapshot.getKey(), Toast.LENGTH_LONG).show();
                             goToChallengueBill(purchase);
                         }
 
@@ -103,9 +103,8 @@ public class AccomplishChallengue extends AppCompatActivity {
         intent.putExtra("price1", purchase.getPrice1() );
         intent.putExtra("price2", purchase.getPrice2() );
         intent.putExtra("price3", purchase.getPrice3() );
-        intent.putExtra("subtotal", purchase.getSubtotal() );
         intent.putExtra("discount", purchase.getDiscount() );
-        intent.putExtra("total", purchase.getTotal() );
+        intent.putExtra("code", purchase.getCode() );
         startActivity(intent);
     }
 }

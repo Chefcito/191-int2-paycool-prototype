@@ -1,5 +1,6 @@
 package co.edu.icesi.joancaliz.paycool_prototype;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -67,7 +68,10 @@ public class HomeActivity extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         dbReference= FirebaseDatabase.getInstance().getReference();
 
-
+        if(auth.getCurrentUser() == null) {
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
+        }
 
         dbReference.child("Users").child(auth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
             @Override

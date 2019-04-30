@@ -19,12 +19,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class LoginActivity extends AppCompatActivity {
-    private EditText emailEditText, passwordEditText;
-    private Button loginButton, goToSignUpButton;
-
     private FirebaseAuth auth;
     private FirebaseDatabase database;
     private DatabaseReference dbReference;
+
+    private EditText emailEditText, passwordEditText;
+    private Button loginButton, goToSignUpButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,17 +35,17 @@ public class LoginActivity extends AppCompatActivity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-
-
         setContentView(R.layout.activity_login);
+
+        auth = FirebaseAuth.getInstance();
+        database = FirebaseDatabase.getInstance();
+        dbReference = database.getReference();
+
         emailEditText = findViewById(R.id.login_email_edit_text);
         passwordEditText = findViewById(R.id.login_password_password_text);
         loginButton = findViewById(R.id.login_sign_in_button);
         goToSignUpButton = findViewById(R.id.login_go_to_sign_up_button);
 
-        auth = FirebaseAuth.getInstance();
-        database = FirebaseDatabase.getInstance();
-        dbReference = database.getReference();
 
         if(auth.getCurrentUser() != null) {
             auth.signOut();
