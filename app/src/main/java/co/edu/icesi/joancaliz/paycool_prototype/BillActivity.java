@@ -9,7 +9,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 //Esta clase es usada para almacenar la información de una factura.
-public class Bill extends AppCompatActivity {
+public class BillActivity extends AppCompatActivity {
     private TextView product1PriceTextView, product2PriceTextView, product3PriceTextView, subtotalTextView, discountTextView, totalTextView;
     private Button confirmPaymentButton;
 
@@ -42,7 +42,7 @@ public class Bill extends AppCompatActivity {
     }
 
     public void goToPurchaseCompleted(){
-        Intent intent = new Intent (this, PurchaseCompleted.class);
+        Intent intent = new Intent (this, PurchaseCompletedActivity.class);
         startActivity(intent);
     }
 }

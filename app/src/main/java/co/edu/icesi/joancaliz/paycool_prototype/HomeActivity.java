@@ -3,7 +3,6 @@ package co.edu.icesi.joancaliz.paycool_prototype;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -12,7 +11,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -20,7 +18,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 //El home mijos. La clase de la actividad principal.
-public class Home extends AppCompatActivity {
+public class HomeActivity extends AppCompatActivity {
 
     //Lista de retos del usuario.
     private ListView challenguesListView;
@@ -43,7 +41,7 @@ public class Home extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
         challenguesListView = findViewById(R.id.home_challengues_list_view);
-        money = findViewById(R.id.money_edit_text);
+        money = findViewById(R.id.home_money_text_view);
 
         /* BaseAdapter requiere que le pasemos por parámetro una instancia de Activity, la cual tiene
         * que ser la actividad en donde se desplegará la lista. Es decir, esta misma actividad (this). */
@@ -74,12 +72,8 @@ public class Home extends AppCompatActivity {
         dbReference.child("Users").child(auth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                User myInformation  =  dataSnapshot.getValue(User.class);
-                Log.d("hola",myInformation.toString());
-            money.setText("$"+Integer.toString(myInformation.getMoney()));
-
-
-
+                User user  =  dataSnapshot.getValue(User.class);
+                money.setText("$"+Integer.toString(user.getMoney()));
             }
 
             @Override

@@ -18,7 +18,7 @@ public class User {
     }
 
     // Este otro constructor es en donde se inicializa la instancia de User.
-    public User(String userID, String name, String surname, String dni, String phoneNumber, String email, String password, int money, int paycoolPoints) {
+    public User(String userID, String name, String surname, String dni, String phoneNumber, String email, String password) {
         this.userID = userID;
         this.name = name;
         this.surname = surname;
@@ -26,8 +26,8 @@ public class User {
         this.phoneNumber = phoneNumber;
         this.email = email;
         this.password = password;
-        this.paycoolPoints=paycoolPoints;
-        this.money=money;
+        money = 0;
+        paycoolPoints = 0;
 
         challengues = new ArrayList<>();
     }

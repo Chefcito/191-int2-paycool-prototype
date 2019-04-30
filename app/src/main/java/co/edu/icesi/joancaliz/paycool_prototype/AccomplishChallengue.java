@@ -6,7 +6,6 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,10 +16,6 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class AccomplishChallengue extends AppCompatActivity {
     private FirebaseDatabase database;
@@ -104,7 +99,7 @@ public class AccomplishChallengue extends AppCompatActivity {
     }
 
     public void goToChallengueBill(Purchase purchase) {
-        Intent intent = new Intent(this, Bill.class);
+        Intent intent = new Intent(this, BillActivity.class);
         intent.putExtra("price1", purchase.getPrice1() );
         intent.putExtra("price2", purchase.getPrice2() );
         intent.putExtra("price3", purchase.getPrice3() );
