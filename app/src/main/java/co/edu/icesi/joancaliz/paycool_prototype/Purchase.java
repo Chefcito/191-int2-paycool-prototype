@@ -20,6 +20,17 @@ public class Purchase {
         this.code = code;
     }
 
+    public Purchase(int price1, int price2, int price3, int discount, String code) {
+        this.price1 = price1;
+        this.price2 = price2;
+        this.price3 = price3;
+        this.discount = discount;
+        this.code = code;
+
+        subtotal = price1 + price2 + price3;
+        total = subtotal - discount;
+    }
+
     public int getPrice1() {
         return price1;
     }
