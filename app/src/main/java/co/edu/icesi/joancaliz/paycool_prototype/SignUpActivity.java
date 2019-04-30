@@ -3,7 +3,6 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,15 +12,10 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.core.Tag;
 
-import java.util.HashMap;
-import java.util.Map;
-
-public class SignUp extends AppCompatActivity {
+public class SignUpActivity extends AppCompatActivity {
     private EditText nameEditText, surnameEditText, dniEditText, phoneNumberEditText, emailEditText, passwordEditText, confirmPasswordEditText;
     private Button createAccountButton, goToLoginButton;
 
@@ -147,52 +141,31 @@ public class SignUp extends AppCompatActivity {
                     String phoneNumber = phoneNumberEditText.getText().toString();
                     String email = emailEditText.getText().toString();
                     String password = passwordEditText.getText().toString();
-
-                    //se añaden las variables de puntos y de dinero para su control
-                    int paycoolPoints =0;
-                    int money =0;
-
-
-                    //Al crear el usaurio hago un map para cargar los archivos y enviarlos a firebase
-
-                    DatabaseReference mDatabase;
-                    mDatabase = FirebaseDatabase.getInstance().getReference();
-                    Map<String, Object> updates= new HashMap<>();
-                    updates.put("userId",userID);
-                    updates.put("name",name);
-                    updates.put("surname",surname);
-                    updates.put("dni",dni);
-                    updates.put("phoneNumber",phoneNumber);
-                    updates.put("email",email);
-                    updates.put("password",password);
-                    updates.put("paycoolPoints",paycoolPoints);
-                    updates.put("money",money);
-                   // mDatabase.child("Users").updateChildren(updates);
-
-
+                    int paycoolPoints = 0;
+                    int money = 0;
 
                   //Se añade el usuario a la base de datos.
-                    User user = new User(userID, name, surname, dni, phoneNumber, email, password,money,paycoolPoints);
-                    mDatabase.child(userID).setValue(updates);
+                    User user = new User(userID, name, surname, dni, phoneNumber, email, password);
+                    dbUsersReference.child(userID).setValue(user);
 
                     goToHome();
                 }
 
                 // Si no lo fué, entonces...
                 else {
-                    Toast.makeText(SignUp.this, "El registro no pudo completarse", Toast.LENGTH_LONG).show();
+                    Toast.makeText(SignUpActivity.this, "El registro no pudo completarse", Toast.LENGTH_LONG).show();
                 }
             }
         });
     }
 
     public void goToHome() {
-        Intent intent = new Intent(this, Home.class);
+        Intent intent = new Intent(this, HomeActivity.class);
         startActivity(intent);
     }
 
     public void goToLogin() {
-        Intent intent = new Intent(this, Login.class);
+        Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
     }
 }

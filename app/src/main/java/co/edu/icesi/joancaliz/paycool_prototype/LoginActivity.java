@@ -15,12 +15,16 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
-public class Login extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
     private EditText emailEditText, passwordEditText;
     private Button loginButton, goToSignUpButton;
 
     private FirebaseAuth auth;
+    private FirebaseDatabase database;
+    private DatabaseReference dbReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +44,8 @@ public class Login extends AppCompatActivity {
         goToSignUpButton = findViewById(R.id.login_go_to_sign_up_button);
 
         auth = FirebaseAuth.getInstance();
+        database = FirebaseDatabase.getInstance();
+        dbReference = database.getReference();
 
         if(auth.getCurrentUser() != null) {
             auth.signOut();
@@ -79,24 +85,32 @@ public class Login extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 // Si el inicio de sesión fue exitoso, entonces...
                 if(task.isSuccessful() ) {
+
+                    /*
+                    for (int i = 0; i < 3; i++) {
+                        Purchase p = new Purchase( (int) Math.random()*1000, "STI19" + i);
+                        DatabaseReference dbPurchaseReference = dbReference.child("Purchases").push();
+                        dbPurchaseReference.setValue(p);
+                    }
+                    */
                     goToHome();
                 }
 
                 // Si no fue exitoso, entonces esto otro...
                 else {
-                    Toast.makeText(Login.this, task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(LoginActivity.this, task.getException().getMessage(), Toast.LENGTH_LONG).show();
                 }
             }
         });
     }
 
     public void goToHome() {
-        Intent intent = new Intent(this, Home.class);
+        Intent intent = new Intent(this, HomeActivity.class);
         startActivity(intent);
     }
 
     public void goToSignUp() {
-        Intent intent = new Intent(this, SignUp.class);
+        Intent intent = new Intent(this, SignUpActivity.class);
         startActivity(intent);
     }
 }

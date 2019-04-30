@@ -20,16 +20,13 @@ public class SplashScreen extends AppCompatActivity {
 
         setContentView(R.layout.activity_splash_screen);
 
-        //Crear el dealy del splash screen a través de Handler
+        //Crear el delay del splash screen a través de Handler
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-
-                Intent intent = new Intent(SplashScreen.this,Login.class);
+                Intent intent = new Intent(SplashScreen.this, LoginActivity.class);
                 startActivity(intent);
             }
         },3000);
-
-
     }
 }
