@@ -8,18 +8,6 @@ public class Purchase {
 
     }
 
-    public Purchase(int discount, String code) {
-        price1 = (int) Math.random()*10000;
-        price2 = (int) Math.random()*10000;
-        price3 = (int) Math.random()*10000;
-        this.discount = discount;
-
-        subtotal = price1 + price2 + price3;
-        total = subtotal - discount;
-
-        this.code = code;
-    }
-
     public Purchase(int price1, int price2, int price3, int discount, String code) {
         this.price1 = price1;
         this.price2 = price2;

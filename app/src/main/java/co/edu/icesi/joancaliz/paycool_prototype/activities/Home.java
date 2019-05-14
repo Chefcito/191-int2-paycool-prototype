@@ -32,12 +32,12 @@ import co.edu.icesi.joancaliz.paycool_prototype.fragments.WalletFragment;
 //El home mijos. La clase de la actividad principal.
 public class Home extends AppCompatActivity {
 
+    private DatabaseReference dbReference;
+    private FirebaseAuth auth;
+
     private TextView money;
     private BottomNavigationView bottomNav;
     private BottomNavigationView.OnNavigationItemSelectedListener bottomNavListener;
-
-    private DatabaseReference dbReference;
-    private FirebaseAuth auth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,12 +48,35 @@ public class Home extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_home);
 
+        // Firebase
+        auth = FirebaseAuth.getInstance();
+        dbReference= FirebaseDatabase.getInstance().getReference();
+
+        if(auth.getCurrentUser() == null) {
+            Intent intent = new Intent(this, Login.class);
+            startActivity(intent);
+        }
+
+        dbReference.child("Users").child(auth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                User user  =  dataSnapshot.getValue(User.class);
+                money.setText("$"+Integer.toString(user.getMoney()));
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
         money = findViewById(R.id.home_money_text_view);
 
         //Navegación principal del home.
+        bottomNav = findViewById(R.id.home_bottom_navigation_view);
+
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.home_main_fragment_container_layout, new HomeFragment() ).commit();
-        bottomNav = findViewById(R.id.home_bottom_navigation_view);
         bottomNavListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
@@ -80,28 +103,6 @@ public class Home extends AppCompatActivity {
             }
         };
         bottomNav.setOnNavigationItemSelectedListener(bottomNavListener);
-
-        // Firebase
-        auth = FirebaseAuth.getInstance();
-        dbReference= FirebaseDatabase.getInstance().getReference();
-
-        if(auth.getCurrentUser() == null) {
-            Intent intent = new Intent(this, Login.class);
-            startActivity(intent);
-        }
-
-        dbReference.child("Users").child(auth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                User user  =  dataSnapshot.getValue(User.class);
-                money.setText("$"+Integer.toString(user.getMoney()));
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
     }
 }
 

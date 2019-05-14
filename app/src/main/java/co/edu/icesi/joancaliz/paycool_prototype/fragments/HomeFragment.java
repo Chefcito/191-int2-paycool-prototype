@@ -18,7 +18,6 @@ import co.edu.icesi.joancaliz.paycool_prototype.adapters.ChallengueAdapter;
 public class HomeFragment extends Fragment {
 
     private View view;
-
     private ListView challenguesListView;
     private ChallengueAdapter challengueAdapter;
 

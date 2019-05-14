@@ -2,57 +2,68 @@
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:paddingVertical="10dp"
+    android:paddingHorizontal="20dp"
+    android:gravity="center_vertical"
     android:orientation="horizontal"
-    android:paddingVertical="40px"
-    android:paddingHorizontal="80px"
+    android:background="@drawable/item_list"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginRight="40px"
-        android:src="@mipmap/ic_launcher_round"/>
+        android:src="@mipmap/ic_launcher_round" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Title"
-            android:textSize="14dp"
-            android:textStyle="bold"
-            android:id="@+id/establishment_offer_title_text_view"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Description"
-            android:textSize="12dp"
-            android:id="@+id/establishment_offer_description_text_view"/>
-
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_gravity="end">
+            android:orientation="vertical">
 
             <TextView
+                android:id="@+id/establishment_offer_title_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Gana: "
-                android:textSize="12dp"/>
+                android:text="Offer"
+                android:textSize="14sp"
+                android:textStyle="bold" />
 
-            <TextViewk
+            <TextView
+                android:id="@+id/establishment_offer_description_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Points"
-                android:textSize="12dp"
-                android:id="@+id/establishment_offer_points_text_view"/>
+                android:text="Description"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
         </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/establishment_offer_company_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="5dp"
+                android:text="Company"
+                android:textSize="15sp" />
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:src="@mipmap/ic_launcher_round"/>
+
+        </RelativeLayout>
 
     </LinearLayout>
 
