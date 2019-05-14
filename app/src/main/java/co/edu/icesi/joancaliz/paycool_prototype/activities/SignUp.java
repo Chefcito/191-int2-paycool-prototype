@@ -1,4 +1,4 @@
-package co.edu.icesi.joancaliz.paycool_prototype;
+package co.edu.icesi.joancaliz.paycool_prototype.activities;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -15,7 +15,10 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class SignUpActivity extends AppCompatActivity {
+import co.edu.icesi.joancaliz.paycool_prototype.R;
+import co.edu.icesi.joancaliz.paycool_prototype.User;
+
+public class SignUp extends AppCompatActivity {
     private EditText nameEditText, surnameEditText, dniEditText, phoneNumberEditText, emailEditText, passwordEditText, confirmPasswordEditText;
     private Button createAccountButton, goToLoginButton;
 
@@ -153,19 +156,19 @@ public class SignUpActivity extends AppCompatActivity {
 
                 // Si no lo fué, entonces...
                 else {
-                    Toast.makeText(SignUpActivity.this, "El registro no pudo completarse", Toast.LENGTH_LONG).show();
+                    Toast.makeText(SignUp.this, "El registro no pudo completarse", Toast.LENGTH_LONG).show();
                 }
             }
         });
     }
 
     public void goToHome() {
-        Intent intent = new Intent(this, HomeActivity.class);
+        Intent intent = new Intent(this, Home.class);
         startActivity(intent);
     }
 
     public void goToLogin() {
-        Intent intent = new Intent(this, LoginActivity.class);
+        Intent intent = new Intent(this, Login.class);
         startActivity(intent);
     }
 }

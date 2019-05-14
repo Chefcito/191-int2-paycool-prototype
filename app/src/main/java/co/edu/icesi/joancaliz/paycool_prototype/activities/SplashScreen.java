@@ -1,4 +1,4 @@
-package co.edu.icesi.joancaliz.paycool_prototype;
+package co.edu.icesi.joancaliz.paycool_prototype.activities;
 
 import android.content.Intent;
 import android.os.Handler;
@@ -7,7 +7,9 @@ import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
 
-public class SplashScreenActivity extends AppCompatActivity {
+import co.edu.icesi.joancaliz.paycool_prototype.R;
+
+public class SplashScreen extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +26,7 @@ public class SplashScreenActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(SplashScreenActivity.this, LoginActivity.class);
+                Intent intent = new Intent(SplashScreen.this, Login.class);
                 startActivity(intent);
             }
         },3000);
