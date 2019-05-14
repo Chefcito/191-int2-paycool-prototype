@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <LinearLayout
@@ -43,27 +43,14 @@
 
     </LinearLayout>
 
-    <LinearLayout
+    <FrameLayout
+        android:id="@+id/home_main_fragment_container_layout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="4"
-        android:orientation="vertical"
-        android:background="@color/gray1"
-        android:padding="80px">
+        android:padding="20dp">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="3"
-            android:orientation="vertical">
-
-            <ListView
-                android:id="@+id/home_challengues_list_view"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-            </ListView>
-        </LinearLayout>
-    </LinearLayout>
+    </FrameLayout>
 
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/home_bottom_navigation_view"
@@ -73,6 +60,8 @@
         app:labelVisibilityMode="selected"
         android:background="#FFFFFF"
         app:itemIconTint="@color/primaryColor"
-        ></android.support.design.widget.BottomNavigationView>
+        >
+
+    </android.support.design.widget.BottomNavigationView>
 
 </LinearLayout>

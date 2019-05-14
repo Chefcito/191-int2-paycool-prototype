@@ -2,8 +2,11 @@ package co.edu.icesi.joancaliz.paycool_prototype.activities;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -22,19 +25,19 @@ import co.edu.icesi.joancaliz.paycool_prototype.Challengue;
 import co.edu.icesi.joancaliz.paycool_prototype.adapters.ChallengueAdapter;
 import co.edu.icesi.joancaliz.paycool_prototype.R;
 import co.edu.icesi.joancaliz.paycool_prototype.User;
+import co.edu.icesi.joancaliz.paycool_prototype.fragments.BenefitsFragment;
+import co.edu.icesi.joancaliz.paycool_prototype.fragments.HomeFragment;
+import co.edu.icesi.joancaliz.paycool_prototype.fragments.WalletFragment;
 
 //El home mijos. La clase de la actividad principal.
 public class Home extends AppCompatActivity {
 
-    //Lista de retos del usuario.
-    private ListView challenguesListView;
-    //Adaptador para la lista de retos.
-    private ChallengueAdapter challengueAdapter;
-    //Textviews de información
     private TextView money;
-    //Comunicación con Firebase
+    private BottomNavigationView bottomNav;
+    private BottomNavigationView.OnNavigationItemSelectedListener bottomNavListener;
+
     private DatabaseReference dbReference;
-     private FirebaseAuth auth;
+    private FirebaseAuth auth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,33 +46,42 @@ public class Home extends AppCompatActivity {
         //La siguiente linea de código oculta el tittle bar
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
         setContentView(R.layout.activity_home);
 
-        challenguesListView = findViewById(R.id.home_challengues_list_view);
         money = findViewById(R.id.home_money_text_view);
 
-        /* BaseAdapter requiere que le pasemos por parámetro una instancia de Activity, la cual tiene
-        * que ser la actividad en donde se desplegará la lista. Es decir, esta misma actividad (this). */
-        challengueAdapter = new ChallengueAdapter(this);
-
-        // Una vez inicializado el adaptador, se le debe añadir al ListView.
-        challenguesListView.setAdapter(challengueAdapter);
-
-        // Esta es la manera en cómo hacer que se pueda ingresar a cada item de la lista.
-        challenguesListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        //Navegación principal del home.
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.home_main_fragment_container_layout, new HomeFragment() ).commit();
+        bottomNav = findViewById(R.id.home_bottom_navigation_view);
+        bottomNavListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                challengueAdapter.goToAccomplishChallengueActivity(i);
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                Fragment currentFragment = null;
+
+                switch( menuItem.getItemId() ) {
+                    case R.id.bottom_navigation_home_item:
+                        currentFragment = new HomeFragment();
+                        break;
+
+                    case R.id.bottom_navigation_benefits_item:
+                        currentFragment = new BenefitsFragment();
+                        break;
+
+                    case R.id.bottom_navigation_wallet_item:
+                        currentFragment = new WalletFragment();
+                        break;
+                }
+
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.home_main_fragment_container_layout, currentFragment).commit();
+
+                return true;
             }
-        });
+        };
+        bottomNav.setOnNavigationItemSelectedListener(bottomNavListener);
 
-        // Añadí tres retos de prueba para ver si funcionaba correctamente.
-        challengueAdapter.addChallengue(new Challengue() );
-        challengueAdapter.addChallengue(new Challengue() );
-        challengueAdapter.addChallengue(new Challengue() );
-
-
+        // Firebase
         auth = FirebaseAuth.getInstance();
         dbReference= FirebaseDatabase.getInstance().getReference();
 

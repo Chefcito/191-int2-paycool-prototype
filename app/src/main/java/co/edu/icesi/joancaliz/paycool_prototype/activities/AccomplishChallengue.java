@@ -35,17 +35,6 @@ public class AccomplishChallengue extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_accomplish_challengue);
 
-        /*
-        //Temporizador que ayuda a simular que el usuario completó el reto.
-            Timer timer = new Timer();
-            timer.schedule(new TimerTask() {
-                @Override
-                public void run() {
-                    goToChallengueBill();
-                }
-            }, 5000);
-        */
-
         database = FirebaseDatabase.getInstance();
         dbReference = database.getReference();
         dbPurchasesReference = dbReference.child("Purchases");
