@@ -9,19 +9,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SplashScreenActivity">
+        <activity android:name=".activities.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SignUpActivity" />
-        <activity android:name=".LoginActivity"></activity>
-        <activity android:name=".PurchaseCompletedActivity" />
-        <activity android:name=".BillActivity" />
-        <activity android:name=".AccomplishChallengue" />
-        <activity android:name=".HomeActivity"></activity>
+        <activity android:name=".activities.SignUp" />
+        <activity android:name=".activities.Login"></activity>
+        <activity android:name=".activities.PurchaseCompleted" />
+        <activity android:name=".activities.Bill" />
+        <activity android:name=".activities.AccomplishChallengue" />
+        <activity android:name=".activities.Home"></activity>
 
         <meta-data
             android:name="preloaded_fonts"

@@ -1,4 +1,4 @@
-package co.edu.icesi.joancaliz.paycool_prototype;
+package co.edu.icesi.joancaliz.paycool_prototype.activities;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -16,7 +16,9 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
+
+import co.edu.icesi.joancaliz.paycool_prototype.Purchase;
+import co.edu.icesi.joancaliz.paycool_prototype.R;
 
 public class AccomplishChallengue extends AppCompatActivity {
     private FirebaseDatabase database;
@@ -99,7 +101,7 @@ public class AccomplishChallengue extends AppCompatActivity {
     }
 
     public void goToChallengueBill(Purchase purchase) {
-        Intent intent = new Intent(this, BillActivity.class);
+        Intent intent = new Intent(this, Bill.class);
         intent.putExtra("price1", purchase.getPrice1() );
         intent.putExtra("price2", purchase.getPrice2() );
         intent.putExtra("price3", purchase.getPrice3() );

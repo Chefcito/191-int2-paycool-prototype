@@ -1,4 +1,4 @@
-package co.edu.icesi.joancaliz.paycool_prototype;
+package co.edu.icesi.joancaliz.paycool_prototype.activities;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -18,8 +18,13 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import co.edu.icesi.joancaliz.paycool_prototype.Challengue;
+import co.edu.icesi.joancaliz.paycool_prototype.adapters.ChallengueAdapter;
+import co.edu.icesi.joancaliz.paycool_prototype.R;
+import co.edu.icesi.joancaliz.paycool_prototype.User;
+
 //El home mijos. La clase de la actividad principal.
-public class HomeActivity extends AppCompatActivity {
+public class Home extends AppCompatActivity {
 
     //Lista de retos del usuario.
     private ListView challenguesListView;
@@ -69,7 +74,7 @@ public class HomeActivity extends AppCompatActivity {
         dbReference= FirebaseDatabase.getInstance().getReference();
 
         if(auth.getCurrentUser() == null) {
-            Intent intent = new Intent(this, LoginActivity.class);
+            Intent intent = new Intent(this, Login.class);
             startActivity(intent);
         }
 
@@ -85,13 +90,6 @@ public class HomeActivity extends AppCompatActivity {
 
             }
         });
-
-
-
-
-
-
-
     }
 }
 

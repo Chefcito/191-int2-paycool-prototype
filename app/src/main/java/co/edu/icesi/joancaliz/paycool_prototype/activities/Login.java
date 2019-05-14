@@ -1,4 +1,4 @@
-package co.edu.icesi.joancaliz.paycool_prototype;
+package co.edu.icesi.joancaliz.paycool_prototype.activities;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -18,7 +18,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class LoginActivity extends AppCompatActivity {
+import co.edu.icesi.joancaliz.paycool_prototype.R;
+
+public class Login extends AppCompatActivity {
     private FirebaseAuth auth;
     private FirebaseDatabase database;
     private DatabaseReference dbReference;
@@ -98,19 +100,19 @@ public class LoginActivity extends AppCompatActivity {
 
                 // Si no fue exitoso, entonces esto otro...
                 else {
-                    Toast.makeText(LoginActivity.this, task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(Login.this, task.getException().getMessage(), Toast.LENGTH_LONG).show();
                 }
             }
         });
     }
 
     public void goToHome() {
-        Intent intent = new Intent(this, HomeActivity.class);
+        Intent intent = new Intent(this, Home.class);
         startActivity(intent);
     }
 
     public void goToSignUp() {
-        Intent intent = new Intent(this, SignUpActivity.class);
+        Intent intent = new Intent(this, SignUp.class);
         startActivity(intent);
     }
 }

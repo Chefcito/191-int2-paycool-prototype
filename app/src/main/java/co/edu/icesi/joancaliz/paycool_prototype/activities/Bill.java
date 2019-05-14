@@ -1,4 +1,4 @@
-package co.edu.icesi.joancaliz.paycool_prototype;
+package co.edu.icesi.joancaliz.paycool_prototype.activities;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -17,10 +17,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.MutableData;
 import com.google.firebase.database.Transaction;
-import com.google.firebase.database.ValueEventListener;
+
+import co.edu.icesi.joancaliz.paycool_prototype.Purchase;
+import co.edu.icesi.joancaliz.paycool_prototype.R;
 
 //Esta clase es usada para almacenar la información de una factura.
-public class BillActivity extends AppCompatActivity {
+public class Bill extends AppCompatActivity {
     private FirebaseAuth auth;
     private DatabaseReference dbReference;
     private DatabaseReference dbCurrentUserReference;
@@ -82,21 +84,21 @@ public class BillActivity extends AppCompatActivity {
                     }
 
                     else {
-                        BillActivity.this.runOnUiThread(new Runnable() {
+                        Bill.this.runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                Toast.makeText(BillActivity.this, "No tienes saldo suficiente. :(", Toast.LENGTH_LONG).show();
-                                Toast.makeText(BillActivity.this, "Tu saldo: " + currentValue + " - Valor de la compra: " + myPurchase.getTotal(), Toast.LENGTH_LONG).show();
+                                Toast.makeText(Bill.this, "No tienes saldo suficiente. :(", Toast.LENGTH_LONG).show();
+                                Toast.makeText(Bill.this, "Tu saldo: " + currentValue + " - Valor de la compra: " + myPurchase.getTotal(), Toast.LENGTH_LONG).show();
                             }
                         });
                     }
                 }
 
                 else {
-                    BillActivity.this.runOnUiThread(new Runnable() {
+                    Bill.this.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            Toast.makeText(BillActivity.this, "Whoops! Algo salió mal", Toast.LENGTH_LONG).show();
+                            Toast.makeText(Bill.this, "Whoops! Algo salió mal", Toast.LENGTH_LONG).show();
                         }
                     });
                 }
@@ -112,7 +114,7 @@ public class BillActivity extends AppCompatActivity {
     }
 
     public void goToPurchaseCompleted(){
-        Intent intent = new Intent (this, PurchaseCompletedActivity.class);
+        Intent intent = new Intent (this, PurchaseCompleted.class);
         startActivity(intent);
     }
 }

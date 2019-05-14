@@ -1,4 +1,4 @@
-package co.edu.icesi.joancaliz.paycool_prototype;
+package co.edu.icesi.joancaliz.paycool_prototype.adapters;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -9,6 +9,10 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+
+import co.edu.icesi.joancaliz.paycool_prototype.Challengue;
+import co.edu.icesi.joancaliz.paycool_prototype.R;
+import co.edu.icesi.joancaliz.paycool_prototype.activities.AccomplishChallengue;
 
 //Este adaptador permite crear listas de retos (Challengue).
 
