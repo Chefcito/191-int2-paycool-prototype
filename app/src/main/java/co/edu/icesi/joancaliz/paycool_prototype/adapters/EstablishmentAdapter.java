@@ -68,4 +68,13 @@ public class EstablishmentAdapter extends BaseAdapter {
         establishments.add(establisment);
         notifyDataSetChanged();
     }
+
+    public ArrayList<EstablishmentOffer> getEstablishments() {
+        return establishments;
+    }
+
+    public void setEstablishments(ArrayList<EstablishmentOffer> establishments) {
+        this.establishments = (ArrayList<EstablishmentOffer>) establishments.clone();
+        notifyDataSetChanged();
+    }
 }
