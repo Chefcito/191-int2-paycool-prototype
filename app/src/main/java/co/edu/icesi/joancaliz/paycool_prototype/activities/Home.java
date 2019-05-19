@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
+import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -32,11 +33,10 @@ import co.edu.icesi.joancaliz.paycool_prototype.fragments.WalletFragment;
 //El home mijos. La clase de la actividad principal.
 public class Home extends AppCompatActivity {
 
-    private TextView money;
+    private FrameLayout fragmentContainer;
     private BottomNavigationView bottomNav;
     private BottomNavigationView.OnNavigationItemSelectedListener bottomNavListener;
 
-    private DatabaseReference dbReference;
     private FirebaseAuth auth;
 
     @Override
@@ -48,12 +48,13 @@ public class Home extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_home);
 
-        money = findViewById(R.id.home_money_text_view);
-
         //Navegación principal del home.
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.home_main_fragment_container_layout, new HomeFragment() ).commit();
+        fragmentContainer = findViewById(R.id.home_fragment_container_frame_layout);
         bottomNav = findViewById(R.id.home_bottom_navigation_view);
+
+        getSupportFragmentManager().beginTransaction()
+                .replace(fragmentContainer.getId(), new HomeFragment() ).commit();
+
         bottomNavListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
@@ -74,7 +75,7 @@ public class Home extends AppCompatActivity {
                 }
 
                 getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.home_main_fragment_container_layout, currentFragment).commit();
+                        .replace(fragmentContainer.getId(), currentFragment).commit();
 
                 return true;
             }
@@ -83,25 +84,11 @@ public class Home extends AppCompatActivity {
 
         // Firebase
         auth = FirebaseAuth.getInstance();
-        dbReference= FirebaseDatabase.getInstance().getReference();
 
         if(auth.getCurrentUser() == null) {
             Intent intent = new Intent(this, Login.class);
             startActivity(intent);
         }
-
-        dbReference.child("Users").child(auth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                User user  =  dataSnapshot.getValue(User.class);
-                money.setText("$"+Integer.toString(user.getMoney()));
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
     }
 }
 
