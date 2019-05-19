@@ -6,20 +6,54 @@
     android:background="@color/gray1"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:gravity="center"
-        android:textStyle="bold"
-        android:textSize="18dp"
-        android:text="¿Qué se te antoja?"/>
+        android:orientation="vertical"
+        android:background="@color/primaryColor"
+        android:gravity="center">
 
-    <ListView
-        android:id="@+id/fragment_benefits_offers_list_view"
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/opensans_regular"
+            android:textColor="#FAFAFA"
+            android:textSize="12dp"
+            android:text="Tu saldo" />
+
+        <TextView
+            android:id="@+id/fragment_benefits_money_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/poppins_bold"
+            android:textColor="#FAFAFA"
+            android:textSize="30dp"
+            android:text="..." />
+
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="6" >
-    </ListView>
+        android:layout_weight="4"
+        android:orientation="vertical" >
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textSize="18dp"
+            android:text="¿Qué se te antoja?" />
+
+        <ListView
+            android:id="@+id/fragment_benefits_offers_list_view"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="6" />
+
+    </LinearLayout>
 </LinearLayout>
