@@ -7,24 +7,13 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.AdapterView;
-import android.widget.ListView;
-import android.widget.TextView;
+import android.widget.FrameLayout;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
-import co.edu.icesi.joancaliz.paycool_prototype.Challengue;
-import co.edu.icesi.joancaliz.paycool_prototype.adapters.ChallengueAdapter;
 import co.edu.icesi.joancaliz.paycool_prototype.R;
-import co.edu.icesi.joancaliz.paycool_prototype.User;
 import co.edu.icesi.joancaliz.paycool_prototype.fragments.BenefitsFragment;
 import co.edu.icesi.joancaliz.paycool_prototype.fragments.HomeFragment;
 import co.edu.icesi.joancaliz.paycool_prototype.fragments.WalletFragment;
@@ -32,12 +21,11 @@ import co.edu.icesi.joancaliz.paycool_prototype.fragments.WalletFragment;
 //El home mijos. La clase de la actividad principal.
 public class Home extends AppCompatActivity {
 
-    private DatabaseReference dbReference;
-    private FirebaseAuth auth;
-
-    private TextView money;
+    private FrameLayout fragmentContainer;
     private BottomNavigationView bottomNav;
     private BottomNavigationView.OnNavigationItemSelectedListener bottomNavListener;
+
+    private FirebaseAuth auth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,35 +36,13 @@ public class Home extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_home);
 
-        // Firebase
-        auth = FirebaseAuth.getInstance();
-        dbReference= FirebaseDatabase.getInstance().getReference();
-
-        if(auth.getCurrentUser() == null) {
-            Intent intent = new Intent(this, Login.class);
-            startActivity(intent);
-        }
-
-        dbReference.child("Users").child(auth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                User user  =  dataSnapshot.getValue(User.class);
-                money.setText("$"+Integer.toString(user.getMoney()));
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
-        money = findViewById(R.id.home_money_text_view);
-
         //Navegación principal del home.
+        fragmentContainer = findViewById(R.id.home_fragment_container_frame_layout);
         bottomNav = findViewById(R.id.home_bottom_navigation_view);
 
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.home_main_fragment_container_layout, new HomeFragment() ).commit();
+                .replace(fragmentContainer.getId(), new HomeFragment() ).commit();
+
         bottomNavListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
@@ -97,12 +63,20 @@ public class Home extends AppCompatActivity {
                 }
 
                 getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.home_main_fragment_container_layout, currentFragment).commit();
+                        .replace(fragmentContainer.getId(), currentFragment).commit();
 
                 return true;
             }
         };
         bottomNav.setOnNavigationItemSelectedListener(bottomNavListener);
+
+        // Firebase
+        auth = FirebaseAuth.getInstance();
+
+        if(auth.getCurrentUser() == null) {
+            Intent intent = new Intent(this, Login.class);
+            startActivity(intent);
+        }
     }
 }
 

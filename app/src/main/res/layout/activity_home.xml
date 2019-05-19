@@ -6,49 +6,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="2"
-        android:orientation="vertical"
-        android:background="@color/primaryColor"
-        android:gravity="center">
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/opensans_regular"
-        android:textColor="#FAFAFA"
-        android:textSize="12dp"
-        android:text="Tu saldo" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:fontFamily="@font/poppins_medium"
-        android:textColor="#FAFAFA"
-        android:textSize="30dp"
-        android:text="$000000"
-        android:id="@+id/home_money_text_view" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:fontFamily="@font/poppins"
-        android:textColor="#FAFAFA"
-        android:textSize="12dp"
-        android:text="¡Tus puntos! 235" />
-
-    </LinearLayout>
-
     <FrameLayout
-        android:id="@+id/home_main_fragment_container_layout"
+        android:id="@+id/home_fragment_container_frame_layout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="4"
-        android:padding="20dp">
+        android:layout_weight="1" >
 
     </FrameLayout>
 
