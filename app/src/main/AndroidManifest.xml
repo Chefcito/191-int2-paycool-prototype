@@ -16,7 +16,13 @@
         <activity android:name=".activities.PurchaseCompleted" />
         <activity android:name=".activities.Bill" />
         <activity android:name=".activities.AccomplishChallengue" />
-        <activity android:name=".activities.Home" />
+        <activity android:name=".activities.Home">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
 
         <meta-data
             android:name="preloaded_fonts"
