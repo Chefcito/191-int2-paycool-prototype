@@ -2,6 +2,7 @@ package co.edu.icesi.joancaliz.paycool_prototype.adapters;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,6 +41,8 @@ public class ChallengueAdapterRecyclerView extends RecyclerView.Adapter<Challeng
         challengueViewHolder.textViewTittle.setText(challengue.getTitle());
         challengueViewHolder.textViewDescription.setText(challengue.getDescription());
         challengueViewHolder.textViewPoints.setText(Integer.toString(challengue.getPoints()));
+
+
     }
 
     //nos devuelve el tamaño de la lista
@@ -64,6 +67,14 @@ public class ChallengueAdapterRecyclerView extends RecyclerView.Adapter<Challeng
             textViewTittle = itemView.findViewById(R.id.challengue_title_text_view);
             textViewDescription = itemView.findViewById(R.id.challengue_description_text_view);
             textViewPoints = itemView.findViewById(R.id.challengue_points_text_view);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    String a = textViewTittle.getText().toString();
+                    Log.i("hola",a);
+
+                }
+            });
 
         }
     }
