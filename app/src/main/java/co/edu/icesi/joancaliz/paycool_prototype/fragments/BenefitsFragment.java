@@ -66,6 +66,7 @@ public class BenefitsFragment extends Fragment {
             }
         });
 
+        //Añade un nuevo beneficio a la base de datos.
         /*String id1 = dbBenefitsReference.push().getKey();
         EstablishmentOffer offer1 = new EstablishmentOffer();
         offer1.setId(id1);

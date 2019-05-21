@@ -1,5 +1,6 @@
 package co.edu.icesi.joancaliz.paycool_prototype.fragments;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -24,19 +25,47 @@ import co.edu.icesi.joancaliz.paycool_prototype.User;
 import static android.app.Activity.RESULT_CANCELED;
 import static android.app.Activity.RESULT_OK;
 
-public class WalletFragment extends Fragment {
+public class WalletFragment extends Fragment implements IFragmentListener{
 
+    private IFragmentListener listener;
     private View view;
 
     private TextView money;
+    private Button withdrawButton;
 
     private FirebaseAuth auth;
     private DatabaseReference dbReference;
     private DatabaseReference dbUsersReference;
 
-    private static final int TRANSFER_REQUEST = 1;
+    public WalletFragment () {
 
-    private Button withdrawButton;
+    }
+
+    public static WalletFragment newInstance() {
+        WalletFragment walletFragment = new WalletFragment();
+        Bundle args = new Bundle();
+        walletFragment.setArguments(args);
+        return walletFragment;
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if(context instanceof IFragmentListener) {
+            listener = (IFragmentListener) context;
+        }
+        else {
+            throw new RuntimeException(context.toString() + " must implement IFragmentListener");
+        }
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if(getArguments() != null) {
+
+        }
+    }
 
     @Nullable
     @Override
@@ -45,12 +74,11 @@ public class WalletFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_wallet, container, false);
 
         money = view.findViewById(R.id.fragment_wallet_money_text_view);
-
         withdrawButton = view.findViewById(R.id.fragment_wallet_withdraw_button);
         withdrawButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                goToTransferActivity();
+                onFragmentInteraction("TRANSFER_REQUEST");
             }
         });
 
@@ -68,29 +96,18 @@ public class WalletFragment extends Fragment {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                System.out.println("Error: " + databaseError);
+                System.out.println("Firebase database error: " + databaseError);
             }
         });
 
         return view;
     }
 
-    public void goToTransferActivity() {
-
-    }
-
+    //Método implementado de la interfáz IFragmentListener
     @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if(requestCode == TRANSFER_REQUEST) {
-            if(resultCode == RESULT_OK) {
-
-            }
-
-            else if(resultCode == RESULT_CANCELED) {
-
-            }
+    public void onFragmentInteraction(String request) {
+        if(listener != null) {
+            listener.onFragmentInteraction(request);
         }
     }
 }

@@ -4,22 +4,27 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 
 import co.edu.icesi.joancaliz.paycool_prototype.R;
 import co.edu.icesi.joancaliz.paycool_prototype.fragments.BenefitsFragment;
 import co.edu.icesi.joancaliz.paycool_prototype.fragments.HomeFragment;
+import co.edu.icesi.joancaliz.paycool_prototype.fragments.IFragmentListener;
+import co.edu.icesi.joancaliz.paycool_prototype.fragments.TransferFragment;
 import co.edu.icesi.joancaliz.paycool_prototype.fragments.WalletFragment;
 
 //El home mijos. La clase de la actividad principal.
-public class Home extends AppCompatActivity {
+public class Home extends AppCompatActivity implements IFragmentListener {
 
     private FrameLayout fragmentContainer;
     private BottomNavigationView bottomNav;
@@ -76,6 +81,21 @@ public class Home extends AppCompatActivity {
         if(auth.getCurrentUser() == null) {
             Intent intent = new Intent(this, Login.class);
             startActivity(intent);
+        }
+    }
+
+    @Override
+    public void onFragmentInteraction(String request) {
+        if(request == "TRANSFER_REQUEST") {
+            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+            TransferFragment transferFragment = TransferFragment.newInstance();
+            fragmentTransaction.replace(fragmentContainer.getId(), transferFragment);
+            fragmentTransaction.addToBackStack("transfer");
+            fragmentTransaction.commit();
+        }
+
+        else {
+            Toast.makeText(this, "Petición desconocida", Toast.LENGTH_SHORT).show();
         }
     }
 }
