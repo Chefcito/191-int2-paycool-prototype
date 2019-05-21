@@ -36,7 +36,6 @@ public class Login extends AppCompatActivity {
         //La siguiente linea de código oculta el tittle bar
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
         setContentView(R.layout.activity_login);
 
         auth = FirebaseAuth.getInstance();
