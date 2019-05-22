@@ -27,6 +27,7 @@ import co.edu.icesi.joancaliz.paycool_prototype.fragments.WalletFragment;
 public class Home extends AppCompatActivity implements IFragmentListener {
 
     private FrameLayout fragmentContainer;
+    private Fragment currentFragment = null;
     private BottomNavigationView bottomNav;
     private BottomNavigationView.OnNavigationItemSelectedListener bottomNavListener;
 
@@ -45,13 +46,28 @@ public class Home extends AppCompatActivity implements IFragmentListener {
         fragmentContainer = findViewById(R.id.home_fragment_container_frame_layout);
         bottomNav = findViewById(R.id.home_bottom_navigation_view);
 
+        //Al iniciar la actividad, el fragmento seleccionado es un HomeFragment.
+        bottomNav.setSelectedItemId(R.id.bottom_navigation_home_item);
+        switch (bottomNav.getSelectedItemId() ) {
+            case R.id.bottom_navigation_home_item:
+                currentFragment = new HomeFragment();
+                break;
+
+            case R.id.bottom_navigation_benefits_item:
+                currentFragment = new BenefitsFragment();
+                break;
+
+            case R.id.bottom_navigation_wallet_item:
+                currentFragment = new WalletFragment();
+                break;
+        }
+
         getSupportFragmentManager().beginTransaction()
-                .replace(fragmentContainer.getId(), new HomeFragment() ).commit();
+                .replace(fragmentContainer.getId(), currentFragment).commit();
 
         bottomNavListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                Fragment currentFragment = null;
 
                 switch( menuItem.getItemId() ) {
                     case R.id.bottom_navigation_home_item:
