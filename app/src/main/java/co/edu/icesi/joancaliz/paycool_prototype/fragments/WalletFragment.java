@@ -1,7 +1,6 @@
 package co.edu.icesi.joancaliz.paycool_prototype.fragments;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -22,12 +21,9 @@ import com.google.firebase.database.ValueEventListener;
 import co.edu.icesi.joancaliz.paycool_prototype.R;
 import co.edu.icesi.joancaliz.paycool_prototype.User;
 
-import static android.app.Activity.RESULT_CANCELED;
-import static android.app.Activity.RESULT_OK;
+public class WalletFragment extends Fragment implements IFragmentInteraction {
 
-public class WalletFragment extends Fragment implements IFragmentListener{
-
-    private IFragmentListener listener;
+    private IFragmentInteraction listener;
     private View view;
 
     private TextView money;
@@ -51,11 +47,11 @@ public class WalletFragment extends Fragment implements IFragmentListener{
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if(context instanceof IFragmentListener) {
-            listener = (IFragmentListener) context;
+        if(context instanceof IFragmentInteraction) {
+            listener = (IFragmentInteraction) context;
         }
         else {
-            throw new RuntimeException(context.toString() + " must implement IFragmentListener");
+            throw new RuntimeException(context.toString() + " must implement IFragmentInteraction");
         }
     }
 
@@ -75,12 +71,6 @@ public class WalletFragment extends Fragment implements IFragmentListener{
 
         money = view.findViewById(R.id.fragment_wallet_money_text_view);
         withdrawButton = view.findViewById(R.id.fragment_wallet_withdraw_button);
-        withdrawButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onFragmentInteraction("TRANSFER_REQUEST");
-            }
-        });
 
         //Firebase
         auth = FirebaseAuth.getInstance();
@@ -103,11 +93,30 @@ public class WalletFragment extends Fragment implements IFragmentListener{
         return view;
     }
 
-    //Método implementado de la interfáz IFragmentListener
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        withdrawButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                TransferFragment transferFragment = TransferFragment.newInstance();
+                replaceFragment(R.id.home_fragment_container_frame_layout, transferFragment);
+            }
+        });
+    }
+
+    //Método implementado de la interfáz IFragmentInteraction
     @Override
     public void onFragmentInteraction(String request) {
         if(listener != null) {
             listener.onFragmentInteraction(request);
+        }
+    }
+
+    @Override
+    public void replaceFragment(int containerId, Fragment fragment) {
+        if(listener != null) {
+            listener.replaceFragment(containerId, fragment);
         }
     }
 }

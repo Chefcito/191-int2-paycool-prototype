@@ -9,11 +9,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.Toast;
 
 import co.edu.icesi.joancaliz.paycool_prototype.R;
-public class TransferFragment extends Fragment implements IFragmentListener {
+public class TransferFragment extends Fragment implements IFragmentInteraction {
 
-    private IFragmentListener listener;
+    private IFragmentInteraction listener;
 
     private FrameLayout fragmentContainer;
 
@@ -31,11 +32,13 @@ public class TransferFragment extends Fragment implements IFragmentListener {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof IFragmentListener) {
-            listener = (IFragmentListener) context;
-        } else {
+        if (context instanceof IFragmentInteraction) {
+            listener = (IFragmentInteraction) context;
+        }
+
+        else {
             throw new RuntimeException(context.toString()
-                    + " must implement IFragmentListener");
+                    + " must implement IFragmentInteraction");
         }
     }
 
@@ -51,14 +54,15 @@ public class TransferFragment extends Fragment implements IFragmentListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.from(container.getContext() ).inflate(R.layout.fragment_transfer, container, false);
         fragmentContainer = view.findViewById(R.id.fragment_transfer_fragment_container_frame_layout);
-        FragmentTransaction fragmentTransaction = getChildFragmentManager().beginTransaction();
+        /*FragmentTransaction fragmentTransaction = getChildFragmentManager().beginTransaction();
         TransferDestiantionFragment transferDestiantionFragment = TransferDestiantionFragment.newInstance();
-        fragmentTransaction.replace(fragmentContainer.getId(), transferDestiantionFragment);
-        fragmentTransaction.commit();
+        String backStackName = transferDestiantionFragment.getTag();
+        fragmentTransaction.replace(fragmentContainer.getId(), transferDestiantionFragment, backStackName).commit();*/
+        TransferDestiantionFragment transferDestiantionFragment = TransferDestiantionFragment.newInstance();
+        replaceFragment(fragmentContainer.getId(), transferDestiantionFragment);
         return view;
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (listener != null) {
 
@@ -73,6 +77,12 @@ public class TransferFragment extends Fragment implements IFragmentListener {
 
     @Override
     public void onFragmentInteraction(String request) {
+    }
 
+    @Override
+    public void replaceFragment(int containerId, Fragment fragment) {
+        if(listener != null) {
+            listener.replaceFragment(containerId, fragment);
+        }
     }
 }

@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -19,12 +18,12 @@ import com.google.firebase.auth.FirebaseAuth;
 import co.edu.icesi.joancaliz.paycool_prototype.R;
 import co.edu.icesi.joancaliz.paycool_prototype.fragments.BenefitsFragment;
 import co.edu.icesi.joancaliz.paycool_prototype.fragments.HomeFragment;
-import co.edu.icesi.joancaliz.paycool_prototype.fragments.IFragmentListener;
+import co.edu.icesi.joancaliz.paycool_prototype.fragments.IFragmentInteraction;
 import co.edu.icesi.joancaliz.paycool_prototype.fragments.TransferFragment;
 import co.edu.icesi.joancaliz.paycool_prototype.fragments.WalletFragment;
 
 //El home mijos. La clase de la actividad principal.
-public class Home extends AppCompatActivity implements IFragmentListener {
+public class Home extends AppCompatActivity implements IFragmentInteraction {
 
     private FrameLayout fragmentContainer;
     private Fragment currentFragment = null;
@@ -62,8 +61,8 @@ public class Home extends AppCompatActivity implements IFragmentListener {
                 break;
         }
 
-        getSupportFragmentManager().beginTransaction()
-                .replace(fragmentContainer.getId(), currentFragment).commit();
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(fragmentContainer.getId(), currentFragment).commit();
 
         bottomNavListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -83,8 +82,9 @@ public class Home extends AppCompatActivity implements IFragmentListener {
                         break;
                 }
 
-                getSupportFragmentManager().beginTransaction()
-                        .replace(fragmentContainer.getId(), currentFragment).commit();
+                clearBackStack();
+                FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                fragmentTransaction.replace(fragmentContainer.getId(), currentFragment).commit();
 
                 return true;
             }
@@ -100,19 +100,25 @@ public class Home extends AppCompatActivity implements IFragmentListener {
         }
     }
 
+    public void clearBackStack() {
+        if(getSupportFragmentManager().getBackStackEntryCount() > 0) {
+            for (int i = 0; i < getSupportFragmentManager().getBackStackEntryCount(); i++)
+                getSupportFragmentManager().popBackStack();
+        }
+    }
+
     @Override
     public void onFragmentInteraction(String request) {
-        if(request == "TRANSFER_REQUEST") {
-            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-            TransferFragment transferFragment = TransferFragment.newInstance();
-            fragmentTransaction.replace(fragmentContainer.getId(), transferFragment);
-            fragmentTransaction.addToBackStack("transfer");
-            fragmentTransaction.commit();
-        }
 
-        else {
-            Toast.makeText(this, "Petición desconocida", Toast.LENGTH_SHORT).show();
-        }
+    }
+
+    @Override
+    public void replaceFragment(int containerId, Fragment fragment) {
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        String backStackName = fragment.getTag();
+        fragmentTransaction.setPrimaryNavigationFragment(fragment);
+        fragmentTransaction.addToBackStack("test");
+        fragmentTransaction.replace(containerId, fragment, backStackName).commit();
     }
 }
 
