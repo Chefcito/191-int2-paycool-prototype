@@ -117,4 +117,5 @@ public class Bill extends AppCompatActivity {
         Intent intent = new Intent (this, PurchaseCompleted.class);
         startActivity(intent);
     }
+
 }

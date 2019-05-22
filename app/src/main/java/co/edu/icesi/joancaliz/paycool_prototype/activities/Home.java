@@ -10,9 +10,7 @@ import android.view.MenuItem;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
-
 import com.google.firebase.auth.FirebaseAuth;
-
 import co.edu.icesi.joancaliz.paycool_prototype.R;
 import co.edu.icesi.joancaliz.paycool_prototype.fragments.BenefitsFragment;
 import co.edu.icesi.joancaliz.paycool_prototype.fragments.HomeFragment;
@@ -24,8 +22,8 @@ public class Home extends AppCompatActivity {
     private FrameLayout fragmentContainer;
     private BottomNavigationView bottomNav;
     private BottomNavigationView.OnNavigationItemSelectedListener bottomNavListener;
-
     private FirebaseAuth auth;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

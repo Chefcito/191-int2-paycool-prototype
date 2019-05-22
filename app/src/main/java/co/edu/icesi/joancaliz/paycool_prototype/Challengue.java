@@ -4,16 +4,17 @@ package co.edu.icesi.joancaliz.paycool_prototype;
 public class Challengue {
 
     private int points;
-    private String title, description;
+    private String title, description, type;
 
     public Challengue() {
 
     }
 
-    public Challengue(String title, String description, int points){
+    public Challengue(String title, String description, int points, String type){
         this.title=title;
         this.description=description;
         this.points=points;
+        this.type =type;
     }
 
 
@@ -40,5 +41,13 @@ public class Challengue {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }

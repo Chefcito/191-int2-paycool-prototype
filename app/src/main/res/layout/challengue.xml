@@ -41,6 +41,14 @@
             android:layout_gravity="end">
 
             <TextView
+                android:id="@+id/challengue_type_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="tipo"
+                android:visibility="invisible" />
+
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Gana: "
