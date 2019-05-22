@@ -19,7 +19,7 @@
             android:id="@+id/imageView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:srcCompat="@drawable/logo_small" />
+            app:srcCompat="@drawable/ic_paycool" />
 
     </LinearLayout>
 
@@ -41,7 +41,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_bold"
-                android:textColor="@color/primaryColor"
+                android:textColor="@color/primaryPurpleColor"
                 android:textSize="24dp"
                 android:text="INICIA SESIÓN" />
 
@@ -81,7 +81,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20px"
-            android:background="@drawable/radius_button"
+            android:background="@drawable/button_purple"
             android:fontFamily="@font/poppins_bold"
             android:shadowColor="@null"
             android:text="INICIAR"

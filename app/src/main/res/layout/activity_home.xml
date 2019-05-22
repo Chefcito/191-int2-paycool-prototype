@@ -21,7 +21,7 @@
         app:menu="@menu/bottom_navigation"
         app:labelVisibilityMode="selected"
         android:background="#FFFFFF"
-        app:itemIconTint="@color/primaryColor"
+        app:itemIconTint="@color/primaryPurpleColor"
         >
 
     </android.support.design.widget.BottomNavigationView>

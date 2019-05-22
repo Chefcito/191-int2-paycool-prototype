@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/gray1"
+    android:background="@color/white"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <LinearLayout
@@ -11,7 +11,7 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:orientation="vertical"
-        android:background="@color/primaryColor"
+        android:background="@color/primaryPurpleColor"
         android:gravity="center">
 
         <TextView
@@ -59,7 +59,7 @@
                 android:id="@+id/fragment_wallet_withdraw_button"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:background="@drawable/radius_button"
+                android:background="@drawable/button_purple"
                 android:textColor="#FFFFFF"
                 android:text="TRANSFERIR"/>
 

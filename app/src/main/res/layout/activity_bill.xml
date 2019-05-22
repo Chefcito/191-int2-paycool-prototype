@@ -226,7 +226,7 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/secondaryColor"
+            android:background="@color/primaryYellowColor"
             android:text="CONFIRMAR"
             android:id="@+id/challengue_bill_confirm_payment_button"/>
 

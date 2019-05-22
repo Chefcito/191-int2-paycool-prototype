@@ -3,7 +3,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="20dp"
+    android:paddingTop="20dp"
+    android:paddingRight="30dp"
+    android:paddingBottom="20dp"
+    android:paddingLeft="30dp"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <LinearLayout
@@ -13,51 +16,25 @@
         android:layout_marginBottom="30dp">
 
         <ImageView
+            android:src="@drawable/ic_transfer"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginRight="10dp"
-            android:src="@drawable/logo_small"/>
+            android:layout_gravity="center_vertical" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/primaryColor"
+            android:textColor="@color/primaryPurpleColor"
             android:fontFamily="@font/poppins_bold"
             android:textSize="24sp"
             android:text="Transferir" />
 
     </LinearLayout>
 
-    <TextView
+    <FrameLayout
+        android:id="@+id/fragment_transfer_fragment_container_frame_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:textColor="@color/primaryColor"
-        android:fontFamily="@font/poppins_bold"
-        android:textSize="18sp"
-        android:text="¿A quien quieres transferir?" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:fontFamily="@font/poppins_bold"
-        android:textSize="14sp"
-        android:text="Otro tipo de cuentas" />
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="number|phone"
-        android:fontFamily="@font/poppins_bold"
-        android:textSize="14sp"
-        android:hint="Número de célular" />
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#9F9F9F"
-        android:textColor="#FFFFFF"
-        android:text="CONTINUAR" />
+        android:layout_height="match_parent" />
 
 </LinearLayout>

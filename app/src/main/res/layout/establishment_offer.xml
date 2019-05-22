@@ -6,7 +6,7 @@
     android:paddingHorizontal="20dp"
     android:gravity="center_vertical"
     android:orientation="horizontal"
-    android:background="@drawable/item_list"
+    android:background="@drawable/list_item"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <ImageView

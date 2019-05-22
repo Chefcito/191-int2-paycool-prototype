@@ -222,7 +222,7 @@
                 android:id="@+id/sign_up_create_account_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/primaryColor"
+                android:background="@color/primaryPurpleColor"
                 android:text="CREAR CUENTA"
                 android:textColor="@color/gray1" />
 

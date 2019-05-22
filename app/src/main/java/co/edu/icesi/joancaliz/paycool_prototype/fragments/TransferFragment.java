@@ -4,15 +4,18 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.FrameLayout;
 
 import co.edu.icesi.joancaliz.paycool_prototype.R;
 public class TransferFragment extends Fragment implements IFragmentListener {
 
     private IFragmentListener listener;
+
+    private FrameLayout fragmentContainer;
 
     public TransferFragment() {
         // Required empty public constructor
@@ -47,7 +50,11 @@ public class TransferFragment extends Fragment implements IFragmentListener {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.from(container.getContext() ).inflate(R.layout.fragment_transfer, container, false);
-
+        fragmentContainer = view.findViewById(R.id.fragment_transfer_fragment_container_frame_layout);
+        FragmentTransaction fragmentTransaction = getChildFragmentManager().beginTransaction();
+        TransferDestiantionFragment transferDestiantionFragment = TransferDestiantionFragment.newInstance();
+        fragmentTransaction.replace(fragmentContainer.getId(), transferDestiantionFragment);
+        fragmentTransaction.commit();
         return view;
     }
 
