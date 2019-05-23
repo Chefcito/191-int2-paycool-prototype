@@ -8,11 +8,16 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <ImageView
-        android:id="@+id/challengue_productImage_img"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/challengue_img_img"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="-10dp"
         android:layout_marginRight="40px"
-        android:src="@mipmap/ic_launcher_round"/>
+        android:scaleType="center"
+        android:scaleX="3"
+        android:scaleY="3"
+        android:src="@mipmap/ic_launcher_round" />
 
     <LinearLayout
         android:layout_width="match_parent"

@@ -15,6 +15,11 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import co.edu.icesi.joancaliz.paycool_prototype.BigChallengue;
+import co.edu.icesi.joancaliz.paycool_prototype.Challengue;
 import co.edu.icesi.joancaliz.paycool_prototype.R;
 import co.edu.icesi.joancaliz.paycool_prototype.User;
 
@@ -28,6 +33,8 @@ public class SignUp extends AppCompatActivity {
 
     // FirebaseDatabase es la base de datos como tal de Firebase.
     private FirebaseDatabase database;
+    private BigChallengue bigChallengue;
+    private List<Challengue> challengues;
 
     /* Estas dos son referencias a la base de datos. Las referencias son como "direcciones" que
     * señalan una parte de la base de datos como tal. Las usamos para acceder a cierta parte de nuestro
@@ -150,6 +157,17 @@ public class SignUp extends AppCompatActivity {
                   //Se añade el usuario a la base de datos.
                     User user = new User(userID, name, surname, dni, phoneNumber, email, password);
                     dbUsersReference.child(userID).setValue(user);
+
+
+                    //necesario para verificación de retos
+                    challengues = new ArrayList<>();
+                    for (int i = 0; i < 3; i++) {
+                        challengues.add(new Challengue("TOSTAO","Paga cualquier producto en Tostao con la app.",5,"buy",i));
+                    }
+
+                    bigChallengue = new BigChallengue("TOSTAO","Paga cualquier producto en Tostao con la app.",5,"buy");
+                    //dbUsersReference.child(userID).child("LitteChallenge").setValue(challengues);
+                    //dbUsersReference.child(userID).child("BigChallenge").setValue(bigChallengue);
 
                     goToHome();
                 }

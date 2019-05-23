@@ -7,8 +7,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -54,6 +57,13 @@ public class ChallengueAdapterRecyclerView extends RecyclerView.Adapter<Challeng
         challengueViewHolder.textViewPoints.setText(Integer.toString(challengue.getPoints()));
         challengueViewHolder.textViewType.setText(challengue.getType());
 
+        if(challengue.getComplete()){
+            Picasso.get().load("https://firebasestorage.googleapis.com/v0/b/paycool-prototype.appspot.com/o/ChallengeState%2Fdone.png?alt=media&token=2b0b736b-f5c2-4284-acf8-6cf80dc55f1f").into(challengueViewHolder.ImageViewChallenge);
+        } else{
+
+            Picasso.get().load("https://firebasestorage.googleapis.com/v0/b/paycool-prototype.appspot.com/o/ChallengeState%2Fundone.png?alt=media&token=2be48ec4-ec2e-4c94-985c-c335d3ba5117").into(challengueViewHolder.ImageViewChallenge);
+        }
+
 
     }
 
@@ -76,6 +86,7 @@ public class ChallengueAdapterRecyclerView extends RecyclerView.Adapter<Challeng
 
         //Elementos que van dentro de Recycler view declarados
         TextView textViewTittle, textViewDescription, textViewPoints, textViewType;
+        ImageView ImageViewChallenge;
 
 
 
@@ -87,6 +98,8 @@ public class ChallengueAdapterRecyclerView extends RecyclerView.Adapter<Challeng
             textViewDescription = itemView.findViewById(R.id.challengue_description_text_view);
             textViewPoints = itemView.findViewById(R.id.challengue_points_text_view);
             textViewType = itemView.findViewById(R.id.challengue_type_text_view);
+            ImageViewChallenge = itemView.findViewById(R.id.challengue_img_img);
+
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

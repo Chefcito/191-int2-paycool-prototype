@@ -4,13 +4,16 @@ package co.edu.icesi.joancaliz.paycool_prototype;
 * instancias (objetos) para luego guardarlos en la base de datos de Firebase*/
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class User {
     private String userID, name, surname, dni, phoneNumber, email, password;
     private int money, paycoolPoints;
+    private  BigChallengue bigChallengue;
+    private List<Challengue> challengues;
+    private  boolean retos = false;
+    private int a,b,c;
 
-    private ArrayList<Challengue> challengues;
-    private Challengue weeklyChallengue;
 
     // Hasta donde recuerdo, las clases que usaran con Firebase requieren un constructor vacío para funcionar correctamente. No se por qué.
     public User() {
@@ -19,6 +22,7 @@ public class User {
 
     // Este otro constructor es en donde se inicializa la instancia de User.
     public User(String userID, String name, String surname, String dni, String phoneNumber, String email, String password) {
+
         this.userID = userID;
         this.name = name;
         this.surname = surname;
@@ -30,6 +34,16 @@ public class User {
         paycoolPoints = 0;
 
         challengues = new ArrayList<>();
+        for (int i = 0; i < 3; i++) {
+            challengues.add(new Challengue("TOSTAO","Paga cualquier producto en Tostao con la app.",5,"buy",i));
+        }
+
+        retos = false;
+
+        bigChallengue = new BigChallengue("TOSTAO","Paga cualquier producto en Tostao con la app.",5,"buy");
+
+
+
     }
 
     // Getters y Setters
@@ -103,5 +117,53 @@ public class User {
 
     public void setPaycoolPoints(int paycoolPoints) {
         this.paycoolPoints = paycoolPoints;
+    }
+
+    public BigChallengue getBigChallengue() {
+        return bigChallengue;
+    }
+
+    public void setBigChallengue(BigChallengue bigChallengue) {
+        this.bigChallengue = bigChallengue;
+    }
+
+    public List<Challengue> getChallengues() {
+        return challengues;
+    }
+
+    public void setChallengues(List<Challengue> challengues) {
+        this.challengues = challengues;
+    }
+
+    public boolean isRetos() {
+        return retos;
+    }
+
+    public void setRetos(boolean retos) {
+        this.retos = retos;
+    }
+
+    public int getA() {
+        return a;
+    }
+
+    public void setA(int a) {
+        this.a = a;
+    }
+
+    public int getB() {
+        return b;
+    }
+
+    public void setB(int b) {
+        this.b = b;
+    }
+
+    public int getC() {
+        return c;
+    }
+
+    public void setC(int c) {
+        this.c = c;
     }
 }
