@@ -59,12 +59,6 @@ public class TransferFragment extends Fragment implements IFragmentInteraction {
         return view;
     }
 
-    public void onButtonPressed(Uri uri) {
-        if (listener != null) {
-
-        }
-    }
-
     @Override
     public void onDetach() {
         super.onDetach();
@@ -76,9 +70,9 @@ public class TransferFragment extends Fragment implements IFragmentInteraction {
     }
 
     @Override
-    public void replaceFragment(int containerId, Fragment fragment, boolean stackable) {
+    public void replaceFragment(Fragment fragment, boolean stackable) {
         if(listener != null) {
-            listener.replaceFragment(containerId, fragment, stackable);
+            listener.replaceFragment(fragment, stackable);
         }
     }
 }

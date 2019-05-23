@@ -37,6 +37,17 @@ public class BenefitsFragment extends Fragment {
     private DatabaseReference dbUsersReference;
     private DatabaseReference dbBenefitsReference;
 
+    public BenefitsFragment () {
+        // Required empty constructor
+    }
+
+    public static BenefitsFragment newInstance() {
+        BenefitsFragment benefitsFragment = new BenefitsFragment();
+        Bundle args = new Bundle();
+        benefitsFragment.setArguments(args);
+        return  benefitsFragment;
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

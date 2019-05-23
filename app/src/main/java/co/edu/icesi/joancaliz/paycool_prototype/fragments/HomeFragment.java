@@ -35,6 +35,17 @@ public class HomeFragment extends Fragment {
     private DatabaseReference dbReference;
     private DatabaseReference dbUsersReference;
 
+    public HomeFragment () {
+        // Required empty constructor
+    }
+
+    public static HomeFragment newInstance() {
+        HomeFragment homeFragment = new HomeFragment();
+        Bundle args = new Bundle();
+        homeFragment.setArguments(args);
+        return  homeFragment;
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

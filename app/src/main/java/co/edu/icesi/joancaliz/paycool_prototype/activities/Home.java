@@ -4,9 +4,11 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.Window;
 import android.view.WindowManager;
@@ -27,6 +29,8 @@ public class Home extends AppCompatActivity implements IFragmentInteraction {
 
     private FrameLayout fragmentContainer;
     private Fragment currentFragment = null;
+    private FragmentManager fragmentManager;
+    private FragmentManager.OnBackStackChangedListener backStackChangedListener;
     private BottomNavigationView bottomNav;
     private BottomNavigationView.OnNavigationItemSelectedListener bottomNavListener;
 
@@ -43,47 +47,30 @@ public class Home extends AppCompatActivity implements IFragmentInteraction {
 
         //Navegación principal del home.
         fragmentContainer = findViewById(R.id.home_fragment_container_frame_layout);
+        fragmentManager = getSupportFragmentManager();
+        /*backStackChangedListener = new FragmentManager.OnBackStackChangedListener() {
+            @Override
+            public void onBackStackChanged() {
+
+            }
+        };
+        fragmentManager.addOnBackStackChangedListener(backStackChangedListener);*/
         bottomNav = findViewById(R.id.home_bottom_navigation_view);
 
         //Al iniciar la actividad, el fragmento seleccionado es un HomeFragment.
         bottomNav.setSelectedItemId(R.id.bottom_navigation_home_item);
-        switch (bottomNav.getSelectedItemId() ) {
-            case R.id.bottom_navigation_home_item:
-                currentFragment = new HomeFragment();
-                break;
+        setMenuCurrentFragment(bottomNav.getSelectedItemId() );
 
-            case R.id.bottom_navigation_benefits_item:
-                currentFragment = new BenefitsFragment();
-                break;
-
-            case R.id.bottom_navigation_wallet_item:
-                currentFragment = new WalletFragment();
-                break;
-        }
-
-        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(fragmentContainer.getId(), currentFragment).commit();
 
         bottomNavListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-
-                switch( menuItem.getItemId() ) {
-                    case R.id.bottom_navigation_home_item:
-                        currentFragment = new HomeFragment();
-                        break;
-
-                    case R.id.bottom_navigation_benefits_item:
-                        currentFragment = new BenefitsFragment();
-                        break;
-
-                    case R.id.bottom_navigation_wallet_item:
-                        currentFragment = new WalletFragment();
-                        break;
-                }
-
+                setMenuCurrentFragment(menuItem.getItemId() );
                 clearBackStack();
-                FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.addToBackStack(currentFragment.getTag() );
                 fragmentTransaction.replace(fragmentContainer.getId(), currentFragment).commit();
 
                 return true;
@@ -100,27 +87,78 @@ public class Home extends AppCompatActivity implements IFragmentInteraction {
         }
     }
 
+    public void setCurrentSelectedMenuItem() {
+        if(currentFragment instanceof HomeFragment) {
+            bottomNav.setSelectedItemId(R.id.bottom_navigation_home_item);
+        }
+        else if(currentFragment instanceof BenefitsFragment) {
+            bottomNav.setSelectedItemId(R.id.bottom_navigation_benefits_item);
+        }
+        else if(currentFragment instanceof WalletFragment) {
+            bottomNav.setSelectedItemId(R.id.bottom_navigation_wallet_item);
+        }
+    }
+
+    public void setMenuCurrentFragment(int selectedItem) {
+        switch( selectedItem ) {
+            case R.id.bottom_navigation_home_item:
+                currentFragment = HomeFragment.newInstance();
+                Log.i("Current fragment", "Home");
+                break;
+
+            case R.id.bottom_navigation_benefits_item:
+                currentFragment = BenefitsFragment.newInstance();
+                Log.i("Current fragment", "Benefits");
+                break;
+
+            case R.id.bottom_navigation_wallet_item:
+                currentFragment = WalletFragment.newInstance();
+                Log.i("Current fragment", "Wallet");
+                break;
+        }
+    }
+
+    public void setCurrentFragment(Fragment fragment) {
+        currentFragment = fragment;
+    }
+
     public void clearBackStack() {
-        if(getSupportFragmentManager().getBackStackEntryCount() > 0) {
-            for (int i = 0; i < getSupportFragmentManager().getBackStackEntryCount(); i++)
-                getSupportFragmentManager().popBackStack();
+        if(fragmentManager.getBackStackEntryCount() > 0) {
+            for (int i = 0; i < fragmentManager.getBackStackEntryCount(); i++)
+                fragmentManager.popBackStack();
+        }
+    }
+
+    /*@Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        getSupportFragmentManager().popBackStack();
+        setCurrentSelectedMenuItem();
+        Log.i("onBackPressed", "Back");
+    }*/
+
+    @Override
+    public void onFragmentInteraction(String request) {
+        switch (request) {
+            case "CLEAR_BACK_STACK_WALLET":
+                clearBackStack();
+                break;
+            default:
+                Log.i("onFragmentInteraction", "La petición no existe");
+                break;
         }
     }
 
     @Override
-    public void onFragmentInteraction(String request) {
-        
-    }
-
-    @Override
-    public void replaceFragment(int containerId, Fragment fragment, boolean stackable) {
-        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+    public void replaceFragment(Fragment fragment, boolean stackable) {
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         String backStackName = fragment.getTag();
         if(stackable) {
             fragmentTransaction.setPrimaryNavigationFragment(fragment);
             fragmentTransaction.addToBackStack(backStackName);
         }
-        fragmentTransaction.replace(containerId, fragment, backStackName).commit();
+        setCurrentFragment(fragment);
+        fragmentTransaction.replace(fragmentContainer.getId(), fragment, backStackName).commit();
     }
 }
 

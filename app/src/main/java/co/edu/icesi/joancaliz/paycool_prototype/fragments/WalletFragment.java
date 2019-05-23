@@ -34,7 +34,7 @@ public class WalletFragment extends Fragment implements IFragmentInteraction {
     private DatabaseReference dbUsersReference;
 
     public WalletFragment () {
-
+        // Required empty constructor
     }
 
     public static WalletFragment newInstance() {
@@ -100,7 +100,7 @@ public class WalletFragment extends Fragment implements IFragmentInteraction {
             @Override
             public void onClick(View view) {
                 TransferFragment transferFragment = TransferFragment.newInstance();
-                replaceFragment(R.id.home_fragment_container_frame_layout, transferFragment, true);
+                replaceFragment(transferFragment, true);
             }
         });
     }
@@ -114,9 +114,9 @@ public class WalletFragment extends Fragment implements IFragmentInteraction {
     }
 
     @Override
-    public void replaceFragment(int containerId, Fragment fragment, boolean stackable) {
+    public void replaceFragment(Fragment fragment, boolean stackable) {
         if(listener != null) {
-            listener.replaceFragment(containerId, fragment, stackable);
+            listener.replaceFragment(fragment, stackable);
         }
     }
 }

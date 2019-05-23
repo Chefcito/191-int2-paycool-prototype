@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -39,7 +40,7 @@ public class Bill extends AppCompatActivity {
 
         auth = FirebaseAuth.getInstance();
         dbReference = FirebaseDatabase.getInstance().getReference();
-        dbCurrentUserReference = dbReference.child("Users").child(auth.getUid() );
+        dbCurrentUserReference = dbReference.child("Users").child(auth.getCurrentUser().getUid() );
 
         int price1 = getIntent().getExtras().getInt("price1");
         int price2 = getIntent().getExtras().getInt("price2");
@@ -108,7 +109,7 @@ public class Bill extends AppCompatActivity {
 
             @Override
             public void onComplete(@Nullable DatabaseError databaseError, boolean b, @Nullable DataSnapshot dataSnapshot) {
-
+                Log.i("Firebase Transaction: ", "Transaction completed");
             }
         });
     }
