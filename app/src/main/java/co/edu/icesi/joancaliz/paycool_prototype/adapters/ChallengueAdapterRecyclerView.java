@@ -115,8 +115,6 @@ public class ChallengueAdapterRecyclerView extends RecyclerView.Adapter<Challeng
                         //AppCompatActivity activity = (AppCompatActivity) itemView.getContext();
                         //WalletFragment walletFragment =  new WalletFragment();
                         //activity.getSupportFragmentManager().beginTransaction().replace(R.id.home_fragment_container_frame_layout, walletFragment).commit();
-
-
                         itemView.getContext().startActivity(cambio);
 
 

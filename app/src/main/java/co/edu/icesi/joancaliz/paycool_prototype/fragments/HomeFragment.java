@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import co.edu.icesi.joancaliz.paycool_prototype.Challengue;
+import co.edu.icesi.joancaliz.paycool_prototype.ChallengueBig;
 import co.edu.icesi.joancaliz.paycool_prototype.R;
 import co.edu.icesi.joancaliz.paycool_prototype.User;
 import co.edu.icesi.joancaliz.paycool_prototype.adapters.ChallengueAdapterRecyclerView;
@@ -31,6 +32,7 @@ public class HomeFragment extends Fragment {
 
     private View view;
     private List<Challengue> challengues;
+    private ChallengueBig big;
 
     private TextView money;
 
@@ -70,11 +72,13 @@ public class HomeFragment extends Fragment {
         //Recycler View
         dChallenges =dbReference.child("Challenges").child("LittleChallenge");
         challengues = new ArrayList<>();
+       // big = new ChallengueBig("MC DONALDS","Cumple 2 tareas para llevarte una Black Angus completamente gratis.",5, "award");
+
        // challengues.add(new Challengue("TOSTAO","Paga cualquier producto en Tostao con la app.",5));
        // challengues.add(new Challengue("BILLETERA","Envía un monto mayor de $2000 pesos a un amigo.",15));
 
        // for (int i = 0; i < challengues.size() ; i++) {
-       //     dChallenges.push().setValue(challengues.get(i));
+         //   dChallenges.push().setValue(big);
        // }
 
 
