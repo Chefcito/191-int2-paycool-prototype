@@ -100,7 +100,7 @@ public class WalletFragment extends Fragment implements IFragmentInteraction {
             @Override
             public void onClick(View view) {
                 TransferFragment transferFragment = TransferFragment.newInstance();
-                replaceFragment(R.id.home_fragment_container_frame_layout, transferFragment);
+                replaceFragment(R.id.home_fragment_container_frame_layout, transferFragment, true);
             }
         });
     }
@@ -114,9 +114,9 @@ public class WalletFragment extends Fragment implements IFragmentInteraction {
     }
 
     @Override
-    public void replaceFragment(int containerId, Fragment fragment) {
+    public void replaceFragment(int containerId, Fragment fragment, boolean stackable) {
         if(listener != null) {
-            listener.replaceFragment(containerId, fragment);
+            listener.replaceFragment(containerId, fragment, stackable);
         }
     }
 }

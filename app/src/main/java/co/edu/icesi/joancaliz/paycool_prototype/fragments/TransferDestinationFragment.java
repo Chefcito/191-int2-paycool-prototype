@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,19 +14,19 @@ import android.widget.EditText;
 
 import co.edu.icesi.joancaliz.paycool_prototype.R;
 
-public class TransferDestiantionFragment extends Fragment implements IFragmentInteraction {
+public class TransferDestinationFragment extends Fragment implements IFragmentInteraction {
 
     private IFragmentInteraction listener;
 
     private EditText phoneNumberEditText;
     private Button continueButton;
 
-    public TransferDestiantionFragment() {
+    public TransferDestinationFragment() {
         // Required empty public constructor
     }
 
-    public static TransferDestiantionFragment newInstance() {
-        TransferDestiantionFragment fragment = new TransferDestiantionFragment();
+    public static TransferDestinationFragment newInstance() {
+        TransferDestinationFragment fragment = new TransferDestinationFragment();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
@@ -67,13 +68,11 @@ public class TransferDestiantionFragment extends Fragment implements IFragmentIn
             @Override
             public void onClick(View view) {
                 TransferInfoFragment transferInfoFragment = TransferInfoFragment.newInstance();
-                replaceFragment(R.id.fragment_transfer_fragment_container_frame_layout, transferInfoFragment);
+                FragmentTransaction fragmentTransaction = getParentFragment().getChildFragmentManager().beginTransaction();
+                fragmentTransaction.addToBackStack(transferInfoFragment.getTag() );
+                fragmentTransaction.replace(R.id.fragment_transfer_fragment_container_frame_layout, transferInfoFragment).commit();
             }
         });
-    }
-
-    public void onButtonPressed(Uri uri) {
-
     }
 
     @Override
@@ -87,9 +86,9 @@ public class TransferDestiantionFragment extends Fragment implements IFragmentIn
     }
 
     @Override
-    public void replaceFragment(int containerId, Fragment fragment) {
+    public void replaceFragment(int containerId, Fragment fragment, boolean stackable) {
         if(listener != null) {
-            listener.replaceFragment(containerId, fragment);
+            listener.replaceFragment(containerId, fragment, stackable);
         }
     }
 }

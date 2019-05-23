@@ -9,7 +9,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
-import android.widget.Toast;
 
 import co.edu.icesi.joancaliz.paycool_prototype.R;
 public class TransferFragment extends Fragment implements IFragmentInteraction {
@@ -54,12 +53,9 @@ public class TransferFragment extends Fragment implements IFragmentInteraction {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.from(container.getContext() ).inflate(R.layout.fragment_transfer, container, false);
         fragmentContainer = view.findViewById(R.id.fragment_transfer_fragment_container_frame_layout);
-        /*FragmentTransaction fragmentTransaction = getChildFragmentManager().beginTransaction();
-        TransferDestiantionFragment transferDestiantionFragment = TransferDestiantionFragment.newInstance();
-        String backStackName = transferDestiantionFragment.getTag();
-        fragmentTransaction.replace(fragmentContainer.getId(), transferDestiantionFragment, backStackName).commit();*/
-        TransferDestiantionFragment transferDestiantionFragment = TransferDestiantionFragment.newInstance();
-        replaceFragment(fragmentContainer.getId(), transferDestiantionFragment);
+        TransferDestinationFragment transferDestinationFragment = TransferDestinationFragment.newInstance();
+        FragmentTransaction fragmentTransaction = getChildFragmentManager().beginTransaction();
+        fragmentTransaction.replace(fragmentContainer.getId(), transferDestinationFragment).commit();
         return view;
     }
 
@@ -80,9 +76,9 @@ public class TransferFragment extends Fragment implements IFragmentInteraction {
     }
 
     @Override
-    public void replaceFragment(int containerId, Fragment fragment) {
+    public void replaceFragment(int containerId, Fragment fragment, boolean stackable) {
         if(listener != null) {
-            listener.replaceFragment(containerId, fragment);
+            listener.replaceFragment(containerId, fragment, stackable);
         }
     }
 }

@@ -109,15 +109,17 @@ public class Home extends AppCompatActivity implements IFragmentInteraction {
 
     @Override
     public void onFragmentInteraction(String request) {
-
+        
     }
 
     @Override
-    public void replaceFragment(int containerId, Fragment fragment) {
+    public void replaceFragment(int containerId, Fragment fragment, boolean stackable) {
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         String backStackName = fragment.getTag();
-        fragmentTransaction.setPrimaryNavigationFragment(fragment);
-        fragmentTransaction.addToBackStack("test");
+        if(stackable) {
+            fragmentTransaction.setPrimaryNavigationFragment(fragment);
+            fragmentTransaction.addToBackStack(backStackName);
+        }
         fragmentTransaction.replace(containerId, fragment, backStackName).commit();
     }
 }

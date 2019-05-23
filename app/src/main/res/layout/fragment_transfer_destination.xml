@@ -47,7 +47,7 @@
         android:id="@+id/fragment_transfer_destination_continue_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/button_disabled"
+        android:background="@drawable/button_purple"
         android:fontFamily="@font/poppins_bold"
         android:textColor="#FFFFFF"
         android:text="CONTINUAR" />

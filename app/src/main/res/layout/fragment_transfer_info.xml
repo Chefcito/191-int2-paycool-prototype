@@ -1,13 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center" >
+    android:weightSum="2"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:layout_weight="1"
+        android:weightSum="3" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:textColor="@color/primaryPurpleColor"
+                android:fontFamily="@font/poppins_bold"
+                android:textSize="18sp"
+                android:text="¿Cuanto dinero?" />
+
+            <EditText
+                android:id="@+id/fragment_transfer_info_money_amount_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:background="@drawable/edit_text"
+                android:fontFamily="@font/poppins_bold"
+                android:textSize="14sp"
+                android:textColorHint="@color/gray1"
+                android:hint="Cantidad de dinero" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:textColor="@color/primaryPurpleColor"
+                android:fontFamily="@font/poppins_bold"
+                android:textSize="18sp"
+                android:text="Escribe una descripción" />
+
+            <EditText
+                android:id="@+id/fragment_transfer_info_message_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edit_text"
+                android:fontFamily="@font/poppins_bold"
+                android:textSize="14sp"
+                android:textColorHint="@color/gray1"
+                android:hint="Mensaje" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/fragment_transfer_info_transfer_button"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="BEBESITA" />
+        android:background="@drawable/button_purple"
+        android:fontFamily="@font/poppins_bold"
+        android:textColor="#FFFFFF"
+        android:text="TRANSFERIR" />
 
 </LinearLayout>

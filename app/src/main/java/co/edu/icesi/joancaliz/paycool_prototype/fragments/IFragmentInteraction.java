@@ -4,5 +4,5 @@ import android.support.v4.app.Fragment;
 
 public interface IFragmentInteraction {
     void onFragmentInteraction(String request);
-    void replaceFragment(int containerId, Fragment fragment);
+    void replaceFragment(int containerId, Fragment fragment, boolean stackable);
 }
