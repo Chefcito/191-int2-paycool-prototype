@@ -2,19 +2,16 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/bottom_navigation_home_item"
-        android:icon="@drawable/ic_paycool"
-        android:title="Inicio"
-        />
+        android:icon="@drawable/ic_home_active"
+        android:title="Inicio" />
 
     <item
         android:id="@+id/bottom_navigation_benefits_item"
-        android:icon="@drawable/ic_paycool"
-        android:title="Beneficios"
-        />
+        android:icon="@drawable/ic_benefits_inactive"
+        android:title="Beneficios" />
 
     <item
         android:id="@+id/bottom_navigation_wallet_item"
-        android:icon="@drawable/ic_paycool"
-        android:title="Billetera"
-        />
+        android:icon="@drawable/ic_wallet_active"
+        android:title="Billetera" />
 </menu>

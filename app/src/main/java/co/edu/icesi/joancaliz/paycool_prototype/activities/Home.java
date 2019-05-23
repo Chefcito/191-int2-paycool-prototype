@@ -1,6 +1,7 @@
 package co.edu.icesi.joancaliz.paycool_prototype.activities;
 
 import android.content.Intent;
+import android.graphics.drawable.TransitionDrawable;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
