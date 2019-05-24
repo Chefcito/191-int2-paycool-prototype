@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="4"
+    android:gravity="center_vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/primaryPurpleColor"
+            android:lineSpacingExtra="-10dp"
+            android:fontFamily="@font/poppins_bold"
+            android:textSize="28sp"
+            android:text="¿Cuáles son tus datos de contacto?" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:fontFamily="@font/opensans_regular"
+            android:textSize="12sp"
+            android:textColor="@color/primaryPurpleColor"
+            android:text="Para estar en contacto contigo y verificar tu cuenta llena los siguientes datos. "/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_medium"
+            android:textSize="12sp"
+            android:textColor="@color/gray1"
+            android:text="Tu celular" />
+
+        <EditText
+            android:id="@+id/fragment_sign_up_contact_phone_number_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/edit_text"
+            android:fontFamily="@font/poppins_bold"
+            android:textSize="14sp"
+            android:textColorHint="@color/gray1"
+            android:hint="Número de tu celular" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_medium"
+            android:textSize="12sp"
+            android:textColor="@color/gray1"
+            android:text="Tu e-mail" />
+
+        <EditText
+            android:id="@+id/fragment_sign_up_contact_email_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edit_text"
+            android:fontFamily="@font/poppins_bold"
+            android:textSize="14sp"
+            android:textColorHint="@color/gray1"
+            android:hint="Correo electrónico" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center_vertical" >
+
+        <Button
+            android:id="@+id/fragment_sign_up_contact_next_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_purple"
+            android:fontFamily="@font/poppins_bold"
+            android:textColor="#FFFFFF"
+            android:text="SIGUIENTE" />
+
+    </LinearLayout>
+
+</LinearLayout>

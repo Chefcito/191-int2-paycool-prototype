@@ -6,7 +6,7 @@ package co.edu.icesi.joancaliz.paycool_prototype;
 import java.util.ArrayList;
 
 public class User {
-    private String userID, name, surname, dni, phoneNumber, email, password;
+    private String userID, name, surname, dni, documentExpeditionDate, phoneNumber, email, password;
     private int money, paycoolPoints;
 
     private ArrayList<Challengue> challengues;
@@ -18,11 +18,12 @@ public class User {
     }
 
     // Este otro constructor es en donde se inicializa la instancia de User.
-    public User(String userID, String name, String surname, String dni, String phoneNumber, String email, String password) {
+    public User(String userID, String name, String surname, String dni, String documentExpeditionDate, String phoneNumber, String email, String password) {
         this.userID = userID;
         this.name = name;
         this.surname = surname;
         this.dni = dni;
+        this.documentExpeditionDate = documentExpeditionDate;
         this.phoneNumber = phoneNumber;
         this.email = email;
         this.password = password;
