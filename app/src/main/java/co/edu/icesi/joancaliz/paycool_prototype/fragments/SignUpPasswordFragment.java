@@ -8,6 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import co.edu.icesi.joancaliz.paycool_prototype.R;
 
@@ -15,6 +17,7 @@ public class SignUpPasswordFragment extends Fragment implements IFragmentInterac
 
     private IFragmentInteraction listener;
 
+    private EditText passwordEditText;
     private Button nextButton;
 
     public SignUpPasswordFragment() {
@@ -50,6 +53,7 @@ public class SignUpPasswordFragment extends Fragment implements IFragmentInterac
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_sign_up_password, container, false);
+        passwordEditText = view.findViewById(R.id.fragment_sign_up_password_password_edit_text);
         nextButton = view.findViewById(R.id.fragment_sign_up_password_next_button);
         return view;
     }
@@ -60,10 +64,18 @@ public class SignUpPasswordFragment extends Fragment implements IFragmentInterac
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                SignUpIdentificationFragment signUpIdentificationFragment = SignUpIdentificationFragment.newInstance();
-                listener.onFragmentInteraction("SIGN_UP");
+                goToHome();
             }
         });
+    }
+
+    public void goToHome() {
+        String password = passwordEditText.getText().toString();
+        if(password.isEmpty() ) {
+            Toast.makeText(getActivity(), "Debes crear una contraseña", Toast.LENGTH_LONG).show();
+            return;
+        }
+        listener.onFragmentInteraction("SIGN_UP");
     }
 
     @Override

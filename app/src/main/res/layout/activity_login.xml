@@ -59,7 +59,7 @@
                 android:fontFamily="@font/poppins_bold"
                 android:textSize="14dp"
                 android:textColorHint="@color/gray1"
-                android:hint="Tu número de celular"
+                android:hint="Correo electrónico"
                 android:textColor="@color/black" />
 
             <EditText

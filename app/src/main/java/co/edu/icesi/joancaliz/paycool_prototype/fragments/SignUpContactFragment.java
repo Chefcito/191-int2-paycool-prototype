@@ -1,20 +1,29 @@
 package co.edu.icesi.joancaliz.paycool_prototype.fragments;
 
+import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import co.edu.icesi.joancaliz.paycool_prototype.R;
+import co.edu.icesi.joancaliz.paycool_prototype.User;
+import co.edu.icesi.joancaliz.paycool_prototype.view_models.SignUpViewModel;
 
 public class SignUpContactFragment extends Fragment implements IFragmentInteraction{
 
+    private SignUpViewModel signUpViewModel;
     private IFragmentInteraction listener;
 
+    private EditText phoneNumberEditText, emailEditText;
     private Button nextButton;
 
     public SignUpContactFragment() {
@@ -50,6 +59,8 @@ public class SignUpContactFragment extends Fragment implements IFragmentInteract
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_sign_up_contact, container, false);
+        phoneNumberEditText = view.findViewById(R.id.fragment_sign_up_contact_phone_number_edit_text);
+        emailEditText  = view.findViewById(R.id.fragment_sign_up_contact_email_edit_text);
         nextButton = view.findViewById(R.id.fragment_sign_up_contact_next_button);
         return view;
     }
@@ -57,13 +68,36 @@ public class SignUpContactFragment extends Fragment implements IFragmentInteract
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        signUpViewModel = ViewModelProviders.of(getActivity() ).get(SignUpViewModel.class);
+        signUpViewModel.getUser().observe(getViewLifecycleOwner(), new Observer<User>() {
+            @Override
+            public void onChanged(@Nullable User user) {
+
+            }
+        });
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                SignUpPasswordFragment signUpPasswordFragment = SignUpPasswordFragment.newInstance();
-                listener.replaceFragment(signUpPasswordFragment, true);
+                goToPasswordFragment();
             }
         });
+    }
+
+    public void goToPasswordFragment() {
+        String phoneNumber = phoneNumberEditText.getText().toString();
+        String email = emailEditText.getText().toString();
+        if(phoneNumber.isEmpty() ) {
+            Toast.makeText(getActivity(), "Debes ingresar tu número de teléfono", Toast.LENGTH_LONG).show();
+            return;
+        }
+        else if(email.isEmpty() ) {
+            Toast.makeText(getActivity(), "Debes ingresar tu email", Toast.LENGTH_LONG).show();
+            return;
+        }
+        /*User user = signUpViewModel.getUser().getValue();
+        signUpViewModel.setUser(user);*/
+        SignUpPasswordFragment signUpPasswordFragment = SignUpPasswordFragment.newInstance();
+        listener.replaceFragment(signUpPasswordFragment, true);
     }
 
     @Override

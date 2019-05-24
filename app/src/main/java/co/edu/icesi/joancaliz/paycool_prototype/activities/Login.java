@@ -42,9 +42,9 @@ public class Login extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         auth = FirebaseAuth.getInstance();
-        if(auth.getCurrentUser() != null) {
+        /*if(auth.getCurrentUser() != null) {
             auth.signOut();
-        }
+        }*/
 
         database = FirebaseDatabase.getInstance();
         dbReference = database.getReference();
@@ -82,6 +82,11 @@ public class Login extends AppCompatActivity {
         }
 
         // Esta es la manera en la que se inicia sesión con un usuario previamente creado en la base de datos de Firebase.
+        if(auth.getCurrentUser() != null) {
+            goToHome();
+            return;
+        }
+
         auth.signInWithEmailAndPassword(emailEditText.getText().toString(), passwordEditText.getText().toString())
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override

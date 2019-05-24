@@ -66,6 +66,14 @@ public class User {
         this.dni = dni;
     }
 
+    public String getDocumentExpeditionDate() {
+        return documentExpeditionDate;
+    }
+
+    public void setDocumentExpeditionDate(String documentExpeditionDate) {
+        this.documentExpeditionDate = documentExpeditionDate;
+    }
+
     public String getPhoneNumber() {
         return phoneNumber;
     }
