@@ -77,7 +77,7 @@ public class HomeFragment extends Fragment {
 
         view = inflater.inflate(R.layout.fragment_home, container, false);
 
-        //Algo parecido al local Storage
+        //Algo parecido al local Storage, leyendo del local
         myPreferences = PreferenceManager.getDefaultSharedPreferences(view.getContext());
         a = myPreferences.getInt("a", 0);
         b = myPreferences.getInt("b", 0);
@@ -140,55 +140,60 @@ public class HomeFragment extends Fragment {
                 c = challengueUsuario.get(2).getIndex();
 
                 ///progres bar y retos en tiempo reaaaaaal
-                progress=0;
-                retosCumplidos=0;
+                progress = 0;
+                retosCumplidos = 0;
 
-                if (challengueUsuario.get(0).getComplete() == true) {
-                    challenguesAsignados.get(0).setComplete(true);
-                    progress += 33;
-                    retosCumplidos++;
+                if (challengueUsuario.size() == 3 && challenguesAsignados.size() ==3) {
 
-                }
+                    if (challengueUsuario.get(0).getComplete() == true) {
+                        challenguesAsignados.get(0).setComplete(true);
+                        progress += 33;
+                        retosCumplidos++;
 
-                if (challengueUsuario.get(0).getComplete() == false) {
-                    challenguesAsignados.get(0).setComplete(false);
+                    }
 
-                }
+                    if (challengueUsuario.get(0).getComplete() == false) {
+                        challenguesAsignados.get(0).setComplete(false);
 
-
-                if (challengueUsuario.get(1).getComplete() == true) {
-
-                    challenguesAsignados.get(1).setComplete(true);
-                    progress += 33;
-                    retosCumplidos++;
-
-                }
-
-                if (challengueUsuario.get(1).getComplete() == false) {
-                    challenguesAsignados.get(1).setComplete(false);
-
-                }
-
-                if (challengueUsuario.get(2).getComplete() == true) {
-
-                    challenguesAsignados.get(2).setComplete(true);
-                    progress += 33;
-                    retosCumplidos++;
-
-                }
-
-                if (challengueUsuario.get(2).getComplete() == false) {
-
-                    challenguesAsignados.get(2).setComplete(false);
-
-                }
+                    }
 
 
-                if (challengueUsuario.get(2).getComplete() == false && challengueUsuario.get(1).getComplete() == false && challengueUsuario.get(0).getComplete() == false) {
-                    progress = 0;
-                }
+                    if (challengueUsuario.get(1).getComplete() == true) {
+
+                        challenguesAsignados.get(1).setComplete(true);
+                        progress += 33;
+                        retosCumplidos++;
+
+                    }
+
+                    if (challengueUsuario.get(1).getComplete() == false) {
+                        challenguesAsignados.get(1).setComplete(false);
+
+                    }
+
+                    if (challengueUsuario.get(2).getComplete() == true) {
+
+                        challenguesAsignados.get(2).setComplete(true);
+                        progress += 33;
+                        retosCumplidos++;
+
+                    }
+
+                    if (challengueUsuario.get(2).getComplete() == false) {
+
+                        challenguesAsignados.get(2).setComplete(false);
+
+                    }
+
+
+                    if (challengueUsuario.get(2).getComplete() == false && challengueUsuario.get(1).getComplete() == false && challengueUsuario.get(0).getComplete() == false) {
+                        progress = 0;
+                    }
+
+
 
                 bigChallengeSize.setText(retosCumplidos + "/" + challenguesAsignados.size());
+                }
                 adapter.notifyDataSetChanged();
                 bigChalleProgressBar.setProgress(progress);
 
@@ -341,7 +346,7 @@ public class HomeFragment extends Fragment {
     @Override
     public void onStop() {
         super.onStop();
-
+/// escribiendo en el local cada vez que me salgo de la app
         SharedPreferences.Editor myEditor = myPreferences.edit();
         myEditor.putInt("a", a);
         myEditor.putInt("b", b);
