@@ -10,22 +10,24 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".activities.SplashScreen" />
-        <activity android:name=".activities.SignUp" />
-        <activity android:name=".activities.Login" />
-        <activity android:name=".activities.PurchaseCompleted" />
-        <activity android:name=".activities.Bill" />
-        <activity android:name=".activities.AccomplishChallengue" />
-        <activity android:name=".activities.Home">
+        <activity android:name=".activities.Onboarding">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".activities.SplashScreen" />
+        <activity android:name=".activities.SignUp" />
+        <activity android:name=".activities.Login"></activity>
+        <activity android:name=".activities.PurchaseCompleted" />
+        <activity android:name=".activities.Bill" />
+        <activity android:name=".activities.AccomplishChallengue" />
+        <activity android:name=".activities.Home" />
 
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
     </application>
+
 </manifest>

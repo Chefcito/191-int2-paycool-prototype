@@ -9,6 +9,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -25,8 +26,9 @@ public class Login extends AppCompatActivity {
     private FirebaseDatabase database;
     private DatabaseReference dbReference;
 
+    private TextView goToSignUpTextView;
     private EditText emailEditText, passwordEditText;
-    private Button loginButton, goToSignUpButton;
+    private Button loginButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,18 +42,17 @@ public class Login extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         auth = FirebaseAuth.getInstance();
+        if(auth.getCurrentUser() != null) {
+            auth.signOut();
+        }
+
         database = FirebaseDatabase.getInstance();
         dbReference = database.getReference();
 
         emailEditText = findViewById(R.id.login_email_edit_text);
         passwordEditText = findViewById(R.id.login_password_password_text);
         loginButton = findViewById(R.id.login_sign_in_button);
-        goToSignUpButton = findViewById(R.id.login_go_to_sign_up_button);
-
-
-        if(auth.getCurrentUser() != null) {
-            auth.signOut();
-        }
+        goToSignUpTextView = findViewById(R.id.login_go_to_sign_up_text_view);
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,7 +61,7 @@ public class Login extends AppCompatActivity {
             }
         });
 
-        goToSignUpButton.setOnClickListener(new View.OnClickListener() {
+        goToSignUpTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 goToSignUp();

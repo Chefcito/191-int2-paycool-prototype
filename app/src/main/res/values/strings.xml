@@ -5,6 +5,22 @@
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="test_title">Te retamos a divertirte</string>
+    <string name="test_content">Con Paycool, tendrás un premio cada semana por cumplir nuestros divertidos retos. ¡Ganas por hacer lo que te gusta!</string>
+
+    <string-array name="onboarding_titles">
+        <item>Te retamos a divertirte</item>
+        <item>Ahorra sin dolor, de a poquito</item>
+        <item>Muchos, pero muchos descuentos</item>
+        <item>Tu billetera de siempre, pero más fácil</item>
+    </string-array>
+
+    <string-array name="onboarding_descriptions">
+        <item>Con Paycool, tendrás un premio cada semana por cumplir nuestros divertidos retos. ¡Ganas por hacer lo que te gusta!</item>
+        <item>Ahorra lo que te sobre de tus compras. Así, tu saldo siempre estará redondeado y tú más cerca a tus sueños.</item>
+        <item>Te ofrecemos descuentos en tus establecimientos favoritos. Te va a encantar la variedad!</item>
+        <item>Transferencias, pagos, retiros, ahorro. Todo en el mismo lugar, y facilísimo.</item>
+    </string-array>
 </resources>
