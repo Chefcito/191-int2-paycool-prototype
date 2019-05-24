@@ -1,6 +1,8 @@
 package co.edu.icesi.joancaliz.paycool_prototype.fragments;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -36,6 +38,7 @@ public class HomeFragment extends Fragment {
 
     private View view;
     private List<Challengue> challengues;
+    private List<Challengue> challengueUsuario = new ArrayList<>();
     private List<Challengue> challenguesAsignados;
     private BigChallengue big;
 
@@ -59,6 +62,7 @@ public class HomeFragment extends Fragment {
     private ImageView bigChallengeImage;
     private TextView point;
     private ProgressBar bigChalleProgressBar;
+    private SharedPreferences myPreferences;
 
 
     //Recycler view elements
@@ -71,6 +75,13 @@ public class HomeFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         view = inflater.inflate(R.layout.fragment_home, container, false);
+
+        //Algo parecido al local Storage
+        myPreferences = PreferenceManager.getDefaultSharedPreferences(view.getContext());
+        a = myPreferences.getInt("a", 0);
+        b = myPreferences.getInt("b", 0);
+        c = myPreferences.getInt("c", 0);
+
 
         //elements from layout find by id
         money = view.findViewById(R.id.fragment_home_money_text_view);
@@ -109,7 +120,32 @@ public class HomeFragment extends Fragment {
         //  dChallenges.push().setValue(challengues.get(i));
         //}
 
-        obtenerInformacionTipoRetoFirebase();
+
+        dbUsersReference.child(auth.getCurrentUser().getUid()).child("challengues").addValueEventListener(new ValueEventListener() {
+
+
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                challengueUsuario.removeAll(challengueUsuario);
+
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    Challengue challengueTemp = snapshot.getValue(Challengue.class);
+                    challengueUsuario.add(challengueTemp);
+                }
+
+
+                a = challengueUsuario.get(0).getIndex();
+                b = challengueUsuario.get(1).getIndex();
+                c = challengueUsuario.get(2).getIndex();
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
         adapter = new ChallengueAdapterRecyclerView(challenguesAsignados);
         rv.setLayoutManager(new LinearLayoutManager(view.getContext()));
         rv.setAdapter(adapter);
@@ -187,12 +223,13 @@ public class HomeFragment extends Fragment {
             }
         });
 
-
+        refrescarListasFirebase();
         return view;
     }
 
 
     public void refrescarListasFirebase() {
+
 
         dChallenges.addValueEventListener(new ValueEventListener() {
             @Override
@@ -242,65 +279,19 @@ public class HomeFragment extends Fragment {
             }
         });
 
-    }
-
-
-    public void obtenerInformacionTipoRetoFirebase() {
-
-
-        dbUsersReference.child(auth.getCurrentUser().getUid()).child("challengues").child("0").child("index").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                String a1 = dataSnapshot.getValue().toString();
-                a = Integer.parseInt(a1);
-                Log.d("p3n3", "onCreateView: ------------------------------------" + a);
-
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
-        dbUsersReference.child(auth.getCurrentUser().getUid()).child("challengues").child("1").child("index").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                String b1 = dataSnapshot.getValue().toString();
-                b = Integer.parseInt(b1);
-                Log.d("p3n3", "onCreateView: ------------------------------------" + b);
-
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
-
-        dbUsersReference.child(auth.getCurrentUser().getUid()).child("challengues").child("2").child("index").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                String c1 = dataSnapshot.getValue().toString();
-                c = Integer.parseInt(c1);
-                Log.d("p3n3", "onCreateView: ------------------------------------" + c);
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
-
-        refrescarListasFirebase();
-
 
     }
 
+    @Override
+    public void onStop() {
+        super.onStop();
 
+        SharedPreferences.Editor myEditor = myPreferences.edit();
+        myEditor.putInt("a", a);
+        myEditor.putInt("b", b);
+        myEditor.putInt("c", c);
+        myEditor.commit();
+
+
+    }
 }

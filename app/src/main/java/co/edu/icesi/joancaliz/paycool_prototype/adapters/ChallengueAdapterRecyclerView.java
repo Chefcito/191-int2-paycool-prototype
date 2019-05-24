@@ -29,13 +29,18 @@ public class ChallengueAdapterRecyclerView extends RecyclerView.Adapter<Challeng
     private List<Challengue> challengues;
 
 
+
+
     public ChallengueAdapterRecyclerView(List<Challengue> challengues){
+
+
         this.challengues=challengues;
 
 
-
-
     }
+
+
+
 
 
     //En este método se define el layout a través de un view, el cual se le pasa al holder
