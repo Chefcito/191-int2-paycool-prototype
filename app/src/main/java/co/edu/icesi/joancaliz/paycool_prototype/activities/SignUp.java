@@ -66,7 +66,7 @@ public class SignUp extends AppCompatActivity implements IFragmentInteraction {
         switch (request) {
             case "SIGN_UP":
                 Toast.makeText(this, "Registro finalizado", Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(this, Home.class);
+                Intent intent = new Intent(this, Onboarding.class);
                 startActivity(intent);
                 break;
 
