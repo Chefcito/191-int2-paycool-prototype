@@ -57,6 +57,7 @@ public class HomeFragment extends Fragment {
     private int a;
     private int b;
     private int c;
+    private int progress;
     private TextView bigChallengeDescription;
     private TextView bigChallengeSize;
     private ImageView bigChallengeImage;
@@ -81,6 +82,8 @@ public class HomeFragment extends Fragment {
         a = myPreferences.getInt("a", 0);
         b = myPreferences.getInt("b", 0);
         c = myPreferences.getInt("c", 0);
+        retosCumplidos = myPreferences.getInt("retos", 0);
+        progress = myPreferences.getInt("progress", 0);
 
 
         //elements from layout find by id
@@ -132,10 +135,63 @@ public class HomeFragment extends Fragment {
                     challengueUsuario.add(challengueTemp);
                 }
 
-
                 a = challengueUsuario.get(0).getIndex();
                 b = challengueUsuario.get(1).getIndex();
                 c = challengueUsuario.get(2).getIndex();
+
+                ///progres bar y retos en tiempo reaaaaaal
+                progress=0;
+                retosCumplidos=0;
+
+                if (challengueUsuario.get(0).getComplete() == true) {
+                    challenguesAsignados.get(0).setComplete(true);
+                    progress += 33;
+                    retosCumplidos++;
+
+                }
+
+                if (challengueUsuario.get(0).getComplete() == false) {
+                    challenguesAsignados.get(0).setComplete(false);
+
+                }
+
+
+                if (challengueUsuario.get(1).getComplete() == true) {
+
+                    challenguesAsignados.get(1).setComplete(true);
+                    progress += 33;
+                    retosCumplidos++;
+
+                }
+
+                if (challengueUsuario.get(1).getComplete() == false) {
+                    challenguesAsignados.get(1).setComplete(false);
+
+                }
+
+                if (challengueUsuario.get(2).getComplete() == true) {
+
+                    challenguesAsignados.get(2).setComplete(true);
+                    progress += 33;
+                    retosCumplidos++;
+
+                }
+
+                if (challengueUsuario.get(2).getComplete() == false) {
+
+                    challenguesAsignados.get(2).setComplete(false);
+
+                }
+
+
+                if (challengueUsuario.get(2).getComplete() == false && challengueUsuario.get(1).getComplete() == false && challengueUsuario.get(0).getComplete() == false) {
+                    progress = 0;
+                }
+
+                bigChallengeSize.setText(retosCumplidos + "/" + challenguesAsignados.size());
+                adapter.notifyDataSetChanged();
+                bigChalleProgressBar.setProgress(progress);
+
 
             }
 
@@ -188,9 +244,9 @@ public class HomeFragment extends Fragment {
                     dbUsersReference.child(auth.getCurrentUser().getUid()).child("challengues").child("1").child("index").setValue(user.getB());
                     dbUsersReference.child(auth.getCurrentUser().getUid()).child("challengues").child("2").child("index").setValue(user.getC());
 
-
                     adapter.notifyDataSetChanged();
                     dbUsersReference.child(auth.getCurrentUser().getUid()).child("retos").setValue(true);
+
                 }
 
 
@@ -290,6 +346,8 @@ public class HomeFragment extends Fragment {
         myEditor.putInt("a", a);
         myEditor.putInt("b", b);
         myEditor.putInt("c", c);
+        myEditor.putInt("progress", progress);
+        myEditor.putInt("retos", retosCumplidos);
         myEditor.commit();
 
 

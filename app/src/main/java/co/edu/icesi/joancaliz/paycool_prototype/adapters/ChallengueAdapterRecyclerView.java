@@ -110,9 +110,10 @@ public class ChallengueAdapterRecyclerView extends RecyclerView.Adapter<Challeng
                 public void onClick(View v) {
                     String a = textViewTittle.getText().toString();
 
+
                     if(textViewType.getText().toString().equals("wallet")){
 
-                        Toast toast = Toast.makeText(itemView.getContext(), "Go To Retos",Toast.LENGTH_SHORT );
+                        Toast toast = Toast.makeText(itemView.getContext(), "¡Billetera virtual!",Toast.LENGTH_SHORT );
                         toast.show();
                         Intent cambio = new Intent(itemView.getContext(), SplashScreen.class);
 
@@ -126,7 +127,7 @@ public class ChallengueAdapterRecyclerView extends RecyclerView.Adapter<Challeng
 
                     if(textViewType.getText().toString().equals("buy")){
 
-                        Toast toast = Toast.makeText(itemView.getContext(), "bebecita",Toast.LENGTH_SHORT );
+                        Toast toast = Toast.makeText(itemView.getContext(), "¡A comprar!",Toast.LENGTH_SHORT );
                         toast.show();
                         Intent cambio = new Intent(itemView.getContext(), AccomplishChallengue.class);
 
