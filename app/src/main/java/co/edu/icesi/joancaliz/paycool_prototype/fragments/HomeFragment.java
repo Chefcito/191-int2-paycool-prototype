@@ -124,87 +124,7 @@ public class HomeFragment extends Fragment {
         //}
 
 
-        dbUsersReference.child(auth.getCurrentUser().getUid()).child("challengues").addValueEventListener(new ValueEventListener() {
 
-
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                challengueUsuario.removeAll(challengueUsuario);
-
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    Challengue challengueTemp = snapshot.getValue(Challengue.class);
-                    challengueUsuario.add(challengueTemp);
-                }
-
-                a = challengueUsuario.get(0).getIndex();
-                b = challengueUsuario.get(1).getIndex();
-                c = challengueUsuario.get(2).getIndex();
-
-                ///progres bar y retos en tiempo reaaaaaal
-                progress = 0;
-                retosCumplidos = 0;
-
-                if (challengueUsuario.size() == 3 && challenguesAsignados.size() ==3) {
-
-                    if (challengueUsuario.get(0).getComplete() == true) {
-                        challenguesAsignados.get(0).setComplete(true);
-                        progress += 33;
-                        retosCumplidos++;
-
-                    }
-
-                    if (challengueUsuario.get(0).getComplete() == false) {
-                        challenguesAsignados.get(0).setComplete(false);
-
-                    }
-
-
-                    if (challengueUsuario.get(1).getComplete() == true) {
-
-                        challenguesAsignados.get(1).setComplete(true);
-                        progress += 33;
-                        retosCumplidos++;
-
-                    }
-
-                    if (challengueUsuario.get(1).getComplete() == false) {
-                        challenguesAsignados.get(1).setComplete(false);
-
-                    }
-
-                    if (challengueUsuario.get(2).getComplete() == true) {
-
-                        challenguesAsignados.get(2).setComplete(true);
-                        progress += 33;
-                        retosCumplidos++;
-
-                    }
-
-                    if (challengueUsuario.get(2).getComplete() == false) {
-
-                        challenguesAsignados.get(2).setComplete(false);
-
-                    }
-
-
-                    if (challengueUsuario.get(2).getComplete() == false && challengueUsuario.get(1).getComplete() == false && challengueUsuario.get(0).getComplete() == false) {
-                        progress = 0;
-                    }
-
-
-
-                bigChallengeSize.setText(retosCumplidos + "/" + challenguesAsignados.size());
-                }
-                adapter.notifyDataSetChanged();
-                bigChalleProgressBar.setProgress(progress);
-
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
 
 
         adapter = new ChallengueAdapterRecyclerView(challenguesAsignados);
@@ -333,6 +253,90 @@ public class HomeFragment extends Fragment {
                 adapter.notifyDataSetChanged();
             }
 
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
+
+        dbUsersReference.child(auth.getCurrentUser().getUid()).child("challengues").addValueEventListener(new ValueEventListener() {
+
+
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                challengueUsuario.removeAll(challengueUsuario);
+
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    Challengue challengueTemp = snapshot.getValue(Challengue.class);
+                    challengueUsuario.add(challengueTemp);
+                }
+
+                a = challengueUsuario.get(0).getIndex();
+                b = challengueUsuario.get(1).getIndex();
+                c = challengueUsuario.get(2).getIndex();
+
+                ///progres bar y retos en tiempo reaaaaaal
+                progress = 0;
+                retosCumplidos = 0;
+
+                if (challengueUsuario.size() == 3 && challenguesAsignados.size() ==3) {
+
+                    if (challengueUsuario.get(0).getComplete() == true) {
+                        challenguesAsignados.get(0).setComplete(true);
+                        progress += 33;
+                        retosCumplidos++;
+
+                    }
+
+                    if (challengueUsuario.get(0).getComplete() == false) {
+                        challenguesAsignados.get(0).setComplete(false);
+
+                    }
+
+
+                    if (challengueUsuario.get(1).getComplete() == true) {
+
+                        challenguesAsignados.get(1).setComplete(true);
+                        progress += 33;
+                        retosCumplidos++;
+
+                    }
+
+                    if (challengueUsuario.get(1).getComplete() == false) {
+                        challenguesAsignados.get(1).setComplete(false);
+
+                    }
+
+                    if (challengueUsuario.get(2).getComplete() == true) {
+
+                        challenguesAsignados.get(2).setComplete(true);
+                        progress += 33;
+                        retosCumplidos++;
+
+                    }
+
+                    if (challengueUsuario.get(2).getComplete() == false) {
+
+                        challenguesAsignados.get(2).setComplete(false);
+
+                    }
+
+
+                    if (challengueUsuario.get(2).getComplete() == false && challengueUsuario.get(1).getComplete() == false && challengueUsuario.get(0).getComplete() == false) {
+                        progress = 0;
+                    }
+
+
+
+                    bigChallengeSize.setText(retosCumplidos + "/" + challenguesAsignados.size());
+                }
+                adapter.notifyDataSetChanged();
+                bigChalleProgressBar.setProgress(progress);
+
+
+            }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
