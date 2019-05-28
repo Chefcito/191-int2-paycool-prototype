@@ -1,5 +1,7 @@
 package co.edu.icesi.joancaliz.paycool_prototype.fragments;
 
+import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -12,9 +14,12 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import co.edu.icesi.joancaliz.paycool_prototype.R;
+import co.edu.icesi.joancaliz.paycool_prototype.User;
+import co.edu.icesi.joancaliz.paycool_prototype.view_models.SignUpViewModel;
 
 public class SignUpPasswordFragment extends Fragment implements IFragmentInteraction{
 
+    private SignUpViewModel signUpViewModel;
     private IFragmentInteraction listener;
 
     private EditText passwordEditText;
@@ -61,6 +66,13 @@ public class SignUpPasswordFragment extends Fragment implements IFragmentInterac
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        signUpViewModel = ViewModelProviders.of(getActivity() ).get(SignUpViewModel.class);
+        signUpViewModel.getUser().observe(getViewLifecycleOwner(), new Observer<User>() {
+            @Override
+            public void onChanged(@Nullable User user) {
+
+            }
+        });
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -75,6 +87,8 @@ public class SignUpPasswordFragment extends Fragment implements IFragmentInterac
             Toast.makeText(getActivity(), "Debes crear una contraseña", Toast.LENGTH_LONG).show();
             return;
         }
+
+        signUpViewModel.setStringData(password);
         listener.onFragmentInteraction("SIGN_UP");
     }
 

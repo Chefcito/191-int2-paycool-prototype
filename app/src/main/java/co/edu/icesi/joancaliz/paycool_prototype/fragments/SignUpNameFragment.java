@@ -95,10 +95,13 @@ public class SignUpNameFragment extends Fragment implements IFragmentInteraction
             Toast.makeText(getActivity(), "Debes ingresar tus apellidos", Toast.LENGTH_LONG).show();
             return;
         }
-        User user = new User();
+        /*User user = new User();
         user.setName(name);
         user.setSurname(surname);
-        signUpViewModel.setUser(user);
+        signUpViewModel.setUser(user);*/
+
+        signUpViewModel.setStringData(name);
+        signUpViewModel.setStringData(surname);
         SignUpIdentificationFragment signUpIdentificationFragment = SignUpIdentificationFragment.newInstance();
         listener.replaceFragment(signUpIdentificationFragment, true);
     }

@@ -1,6 +1,9 @@
 package co.edu.icesi.joancaliz.paycool_prototype.activities;
+import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -24,11 +27,17 @@ import co.edu.icesi.joancaliz.paycool_prototype.R;
 import co.edu.icesi.joancaliz.paycool_prototype.User;
 import co.edu.icesi.joancaliz.paycool_prototype.fragments.IFragmentInteraction;
 import co.edu.icesi.joancaliz.paycool_prototype.fragments.SignUpNameFragment;
+import co.edu.icesi.joancaliz.paycool_prototype.view_models.SignUpViewModel;
 
 public class SignUp extends AppCompatActivity implements IFragmentInteraction {
 
+    private FirebaseAuth auth;
+    private DatabaseReference dbReference;
+    private DatabaseReference dbUsersReference;
+
     private Fragment currentFragment;
     private FragmentManager fragmentManager;
+    private SignUpViewModel signUpViewModel;
 
     private FrameLayout fragmentContainer;
 
@@ -37,8 +46,19 @@ public class SignUp extends AppCompatActivity implements IFragmentInteraction {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
+        auth = FirebaseAuth.getInstance();
+        dbReference = FirebaseDatabase.getInstance().getReference();
+        dbUsersReference = dbReference.child("Users");
+
         currentFragment = null;
         fragmentManager = getSupportFragmentManager();
+        signUpViewModel = ViewModelProviders.of(this).get(SignUpViewModel.class);
+        ((SignUpViewModel) signUpViewModel).getUser().observe(this, new Observer<User>() {
+            @Override
+            public void onChanged(@Nullable User user) {
+
+            }
+        });
 
         fragmentContainer = findViewById(R.id.sign_up_fragment_container_frame_layout);
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -52,12 +72,33 @@ public class SignUp extends AppCompatActivity implements IFragmentInteraction {
     }
 
     public void signUp() {
-        Intent intent = new Intent(this, Onboarding.class);
-        startActivity(intent);
+        final String name = signUpViewModel.getStringData(0);
+        final String surname = signUpViewModel.getStringData(1);
+        final String dni = signUpViewModel.getStringData(2);
+        final String documentExpeditionDate = signUpViewModel.getStringData(3);
+        final String phoneNumber = signUpViewModel.getStringData(4);
+        final String email = signUpViewModel.getStringData(5);
+        final String password = signUpViewModel.getStringData(6);
+
+        auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if(task.isSuccessful() ) {
+                    String userID = auth.getCurrentUser().getUid();
+                    User user = new User(userID, name, surname, dni, documentExpeditionDate, phoneNumber, email, password);
+                    dbUsersReference.child(userID).setValue(user);
+                    goToOnboarding();
+                }
+
+                else {
+                    Toast.makeText(SignUp.this, task.getResult().toString(), Toast.LENGTH_LONG).show();
+                }
+            }
+        });
     }
 
-    public void goToLogin() {
-        Intent intent = new Intent(this, Login.class);
+    public void goToOnboarding() {
+        Intent intent = new Intent(this, Onboarding.class);
         startActivity(intent);
     }
 
@@ -65,9 +106,7 @@ public class SignUp extends AppCompatActivity implements IFragmentInteraction {
     public void onFragmentInteraction(String request) {
         switch (request) {
             case "SIGN_UP":
-                Toast.makeText(this, "Registro finalizado", Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(this, Onboarding.class);
-                startActivity(intent);
+                signUp();
                 break;
 
             default:

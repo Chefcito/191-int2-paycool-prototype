@@ -1,21 +1,17 @@
 package co.edu.icesi.joancaliz.paycool_prototype.activities;
 
 import android.content.Intent;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import co.edu.icesi.joancaliz.paycool_prototype.R;
 import co.edu.icesi.joancaliz.paycool_prototype.adapters.OnboardingFragmentCollectionAdapter;
-import co.edu.icesi.joancaliz.paycool_prototype.fragments.OnboardingFragment;
 
 public class Onboarding extends AppCompatActivity {
 

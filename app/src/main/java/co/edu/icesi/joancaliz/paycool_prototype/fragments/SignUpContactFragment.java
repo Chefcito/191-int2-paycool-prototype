@@ -94,8 +94,9 @@ public class SignUpContactFragment extends Fragment implements IFragmentInteract
             Toast.makeText(getActivity(), "Debes ingresar tu email", Toast.LENGTH_LONG).show();
             return;
         }
-        /*User user = signUpViewModel.getUser().getValue();
-        signUpViewModel.setUser(user);*/
+
+        signUpViewModel.setStringData(phoneNumber);
+        signUpViewModel.setStringData(email);
         SignUpPasswordFragment signUpPasswordFragment = SignUpPasswordFragment.newInstance();
         listener.replaceFragment(signUpPasswordFragment, true);
     }

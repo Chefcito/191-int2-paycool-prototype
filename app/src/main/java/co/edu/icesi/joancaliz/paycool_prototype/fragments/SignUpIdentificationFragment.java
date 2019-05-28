@@ -95,10 +95,13 @@ public class SignUpIdentificationFragment extends Fragment implements IFragmentI
             Toast.makeText(getActivity(), "Debes ingresar la fecha de expedición de tu cédula", Toast.LENGTH_LONG).show();
             return;
         }
-        User user = signUpViewModel.getUser().getValue();
+        /*User user = signUpViewModel.getUser().getValue();
         user.setDni(dni);
         user.setSurname(documentExpeditionDate);
-        signUpViewModel.setUser(user);
+        signUpViewModel.setUser(user);*/
+
+        signUpViewModel.setStringData(dni);
+        signUpViewModel.setStringData(documentExpeditionDate);
         SignUpContactFragment signUpContactFragment = SignUpContactFragment.newInstance();
         listener.replaceFragment(signUpContactFragment, true);
     }
