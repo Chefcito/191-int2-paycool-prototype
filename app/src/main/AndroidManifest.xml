@@ -10,7 +10,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".activities.Onboarding"></activity>
+        <activity android:name=".activities.AccountCreated"></activity>
+        <activity android:name=".activities.Onboarding" />
         <activity android:name=".activities.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -18,8 +19,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.SignUp"></activity>
-        <activity android:name=".activities.Login"></activity>
+        <activity android:name=".activities.SignUp" />
+        <activity android:name=".activities.Login" />
         <activity android:name=".activities.PurchaseCompleted" />
         <activity android:name=".activities.Bill" />
         <activity android:name=".activities.AccomplishChallengue" />

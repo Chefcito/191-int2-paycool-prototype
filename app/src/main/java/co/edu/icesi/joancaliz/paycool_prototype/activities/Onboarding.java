@@ -39,6 +39,7 @@ public class Onboarding extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 goToHome();
+                finish();
             }
         });
     }

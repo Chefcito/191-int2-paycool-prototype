@@ -2,8 +2,8 @@
 <resources>
     <color name="colorPrimaryDark">#000000</color>
     <color name="colorAccent">#000000</color>
-    <color name="primaryPurpleColor">#635DA5</color>
-    <color name="primaryYellowColor">#FFC85C</color>
+    <color name="primaryPurple">#635DA5</color>
+    <color name="primaryYellow">#FFC85C</color>
     <color name="black">#000000</color>
     <color name="gray1">#A7A7A7</color>
     <color name="gray2">#F4F4F4</color>

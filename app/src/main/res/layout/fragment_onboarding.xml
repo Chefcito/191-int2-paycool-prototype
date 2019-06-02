@@ -17,7 +17,7 @@
         android:fontFamily="@font/poppins_bold"
         android:textAlignment="center"
         android:textSize="18sp"
-        android:textColor="@color/primaryPurpleColor" />
+        android:textColor="@color/primaryPurple" />
 
     <TextView
         android:id="@+id/fragment_onboarding_description_text_view"

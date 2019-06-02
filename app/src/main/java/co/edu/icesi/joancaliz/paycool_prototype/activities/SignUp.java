@@ -87,7 +87,8 @@ public class SignUp extends AppCompatActivity implements IFragmentInteraction {
                     String userID = auth.getCurrentUser().getUid();
                     User user = new User(userID, name, surname, dni, documentExpeditionDate, phoneNumber, email, password);
                     dbUsersReference.child(userID).setValue(user);
-                    goToOnboarding();
+                    goToAccountCreated(name);
+                    finish();
                 }
 
                 else {
@@ -97,8 +98,9 @@ public class SignUp extends AppCompatActivity implements IFragmentInteraction {
         });
     }
 
-    public void goToOnboarding() {
-        Intent intent = new Intent(this, Onboarding.class);
+    public void goToAccountCreated(String name) {
+        Intent intent = new Intent(this, AccountCreated.class);
+        intent.putExtra("NAME", name);
         startActivity(intent);
     }
 

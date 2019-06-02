@@ -5,11 +5,16 @@
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
 
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-
+    <string name="hello_blank_fragment">Hello blank fragment</string
+        >
+    <!-- TEST STRINGS -->
     <string name="test_title">Te retamos a divertirte</string>
     <string name="test_content">Con Paycool, tendrás un premio cada semana por cumplir nuestros divertidos retos. ¡Ganas por hacer lo que te gusta!</string>
 
+    <!-- ACCOUNT CREATED -->
+    <string name="account_created_message">¡Tu cuenta fue creada exitosamente!</string>
+
+    <!-- ONBOARDING -->
     <string-array name="onboarding_titles">
         <item>Te retamos a divertirte</item>
         <item>Ahorra sin dolor, de a poquito</item>

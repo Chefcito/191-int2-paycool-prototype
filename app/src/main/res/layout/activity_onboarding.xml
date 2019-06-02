@@ -27,7 +27,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/opensans_regular"
             android:textSize="14sp"
-            android:textColor="@color/primaryPurpleColor"
+            android:textColor="@color/primaryPurple"
             android:text="Saltar"/>
 
     </LinearLayout>
